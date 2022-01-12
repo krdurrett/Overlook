@@ -47,7 +47,10 @@ main {
   }
 }
 
-.dashboard-view {
+.dashboard-view,
+.log-in-view,
+.booking-page-view,
+.error-message-view {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,11 +58,14 @@ main {
   height: 80%;
 }
 
-.welcome-message {
+.heading {
   font-weight: bold;
   font-size: 45px;
-  color: #DEDEDC;
+  color: white;
   margin: 10px;
+    p {
+      background-color: #BC8B3F;
+    }
 }
 
 .bookings-history {
@@ -71,21 +77,6 @@ main {
   flex-direction: column;
   padding: 20px;
   font-size: 20px;
-}
-
-.log-in-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #DEDEDC;
-  height: 80%;
-}
-
-.welcome-message-log-in {
-  font-weight: bold;
-  font-size: 40px;
-  color: #DEDEDC;
-  margin: 10px;
 }
 
 .log-in-form {
@@ -103,6 +94,65 @@ main {
       display: flex;
       flex-direction: column;
     }
+}
+
+.booking-page-view {
+  justify-content: space-between;
+
+    .heading {
+      margin-bottom: 0;
+    }
+}
+
+.booking-card-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 75%;
+  width: 60%;
+}
+
+.booking-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  height: 50%;
+  width: 30%;
+  margin: 10px;
+  background-color: rgba(225, 225, 225, .8);
+
+    p {
+      font-weight: bold;
+      font-size: 30px;
+      margin: 0;
+    }
+}
+
+.room-detail-list {
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+}
+
+.filter-button-section {
+  align-self: flex-end;
+}
+
+.error-message-view {
+
+  .heading {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 100px;
+  }
+}
+
+.try-again-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
 }
 
 input {
