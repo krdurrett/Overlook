@@ -11,15 +11,18 @@
 </head>
 <body>
   <main>
-    <nav>
+    <nav class="log-in-nav hidden">
+      <p>THE OVERLOOK</p>
+    </nav>
+    <nav class="dashboard-nav">
       <div>
-        <button class="button-30" role="button">HOME</button>
+        <button>HOME</button>
       </div>
       <div>
         <p>THE OVERLOOK</p>
       </div>
       <div>
-        <button class="button-30" role="button">BOOK A ROOM</button>
+        <button>BOOK A ROOM</button>
       </div>
     </nav>
     <section class="dashboard-view">
@@ -31,7 +34,7 @@
           <p>Bookings History</p>
         </section>
         <section>
-          <ul>
+          <ul class="booking-list">
             <li>Booking Info 1</li>
             <li>Booking Info 2</li>
             <li>Booking Info 3</li>
@@ -41,6 +44,25 @@
           <p>Total Cost $$$$$</p>
         </section>
       </section>
+    </section>
+    <section class="log-in-view hidden">
+      <section class="welcome-message-log-in">
+        <p>Welcome to the Overlook, Please log in:</p>
+      </section>
+      <div class="log-in-form">
+        <form>
+          <label for="userName">User Name</label>
+          <input type="text" name="userName" require="required">
+          <label for="password">Password</label>
+          <input type="text" name="password" require="required">
+        </form>
+        <div>
+          <button>LOG-IN</button>
+          <button>Continue As Guest</button>
+        </div>
+      </div>
+    </section>
+    <section class="booking-page hidden">
     </section>
   </main>
   <script src="bundle.js"></script>

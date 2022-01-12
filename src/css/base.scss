@@ -18,7 +18,21 @@ main {
   height: 100vh;
 }
 
-nav {
+.log-in-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  height: 10%;
+
+  p {
+    font-weight: bold;
+    font-size: 45px;
+    color: #DEDEDC;
+  }
+}
+
+.dashboard-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,7 +43,7 @@ nav {
     font-weight: bold;
     font-size: 45px;
     color: #DEDEDC;
-    margin: 10px;
+    margin: 10px 10px 10px 75px;
   }
 }
 
@@ -46,14 +60,56 @@ nav {
   font-size: 45px;
   color: #DEDEDC;
   margin: 10px;
-  border: 2px solid red;
 }
 
 .bookings-history {
-  border: 2px solid purple;
+  font-size: 35px;
 }
 
-.button-30 {
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.log-in-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #DEDEDC;
+  height: 80%;
+}
+
+.welcome-message-log-in {
+  font-weight: bold;
+  font-size: 40px;
+  color: #DEDEDC;
+  margin: 10px;
+}
+
+.log-in-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30px;
+  color: #36395A;
+  background-color: rgba(225, 225, 225, .6);
+  height: 40%;
+  width: 20%;
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+}
+
+input {
+  height: 25px;
+}
+
+button {
   align-items: center;
   appearance: none;
   background-color: #DEDEDC;
@@ -84,16 +140,20 @@ nav {
   font-size: 18px;
 }
 
-.button-30:focus {
+button:focus {
   box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
 
-.button-30:hover {
+button:hover {
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
-.button-30:active {
+button:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
+}
+
+.hidden {
+  display: none;
 }
