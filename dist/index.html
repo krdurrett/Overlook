@@ -4,13 +4,99 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300;400;700&display=swap" rel="stylesheet">
+  <title>Overlook Hotel</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+  <main>
+    <nav class="log-in-nav hidden">
+      <p>THE OVERLOOK</p>
+    </nav>
+    <nav class="dashboard-nav">
+      <div>
+        <button>HOME</button>
+      </div>
+      <div>
+        <p>THE OVERLOOK</p>
+      </div>
+      <div>
+        <button>BOOK A ROOM</button>
+      </div>
+    </nav>
+    <section class="dashboard-view hidden">
+      <section class="heading">
+        <p>Welcome User 7</p>
+      </section>
+      <section class="bookings-history">
+        <section>
+          <p>Bookings History</p>
+        </section>
+        <section>
+          <ul class="booking-list">
+            <li>Booking Info 1</li>
+            <li>Booking Info 2</li>
+            <li>Booking Info 3</li>
+          </ul>
+        </section>
+        <section>
+          <p>Total Cost $$$$$</p>
+        </section>
+      </section>
+    </section>
+    <section class="log-in-view hidden">
+      <section class="heading">
+        <p>Welcome to the Overlook, Please log in:</p>
+      </section>
+      <div class="log-in-form">
+        <form>
+          <label for="userName">User Name</label>
+          <input type="text" name="userName" require="required">
+          <label for="password">Password</label>
+          <input type="text" name="password" require="required">
+        </form>
+        <div>
+          <button>LOG-IN</button>
+          <button>Continue As Guest</button>
+        </div>
+      </div>
+    </section>
+    <section class="booking-page-view hidden">
+      <section class="heading">
+        <p>Available Bookings for Selected Dates</p>
+      </section>
+      <section class="booking-card-section">
+        <!-- innerHTML will go here -->
+        <section class="booking-card">
+          <div>
+            <p>Room Details</p>
+          </div>
+          <div class="room-detail-list">
+            <ul>
+              <li>Room Detail 1</li>
+              <li>Room Detail 2</li>
+              <li>Room Detail 3</li>
+            <ul>
+          </div>
+          <div>
+            <button>Book Room</button>
+          </div>
+        </section>
+      </section>
+      <section class="filter-button-section">
+        <button>Filter Rooms</button>
+      </section>
+    </section>
+    <section class="error-message-view">
+      <section class="heading">
+        <p>We sincerely apologize, but no rooms match your search criteria!</p>
+      <section>
+      <section class="try-again-button">
+        <button>Try Again!</button>
+      </section>
+    </section>
+  </main>
   <script src="bundle.js"></script>
-
 </body>
 </html>
