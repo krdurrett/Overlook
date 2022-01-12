@@ -11,6 +11,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
+  overflow: hidden;
+}
+
+main {
+  height: 100vh;
 }
 
 nav {
@@ -18,16 +23,35 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin: 15px;
+  height: 10%;
 
   p {
     font-weight: bold;
     font-size: 45px;
     color: #DEDEDC;
-    height: 100%;
     margin: 10px;
   }
 }
 
+.dashboard-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #DEDEDC;
+  height: 80%;
+}
+
+.welcome-message {
+  font-weight: bold;
+  font-size: 45px;
+  color: #DEDEDC;
+  margin: 10px;
+  border: 2px solid red;
+}
+
+.bookings-history {
+  border: 2px solid purple;
+}
 
 .button-30 {
   align-items: center;
@@ -40,7 +64,7 @@ nav {
   color: #36395A;
   cursor: pointer;
   display: inline-flex;
-  // font-family: "JetBrains Mono",monospace;
+  font-family: 'Averia Serif Libre', cursive;
   height: 48px;
   justify-content: center;
   line-height: 1;
