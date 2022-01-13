@@ -34,6 +34,7 @@ const getRandomElement = array => {
 const displayRandomUser = (customer) => {
   customer.findMyBookings()
   customer.calculateTotalCost()
+  console.log(customer.myBookings)
   domUpdates.showRandomUser(customer);
 }
 

@@ -8,9 +8,13 @@ class Customer {
     this.totalCost
   }
   findMyBookings() {
-    this.myBookings = this.allBookings.filter(booking => {
+    let filteredBookings = this.allBookings.filter(booking => {
       return booking.userID === this.id
     })
+    this.myBookings = filteredBookings.reduce((acc, booking) => {
+      acc.push({bookingDate: booking.date, roomNumber: booking.roomNumber, cost: this.rooms.find(room => room.number === booking.roomNumber).costPerNight})
+      return acc
+    }, [])
   }
   calculateTotalCost() {
      let cost = this.myBookings.reduce((acc, booking) => {
