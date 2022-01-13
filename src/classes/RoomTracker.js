@@ -5,27 +5,34 @@ class RoomTracker {
     this.availableRoomsByDate = []
     this.availableRoomsByDateAndFilter = []
   }
-  filterRoomsByDateRange(dateRange) {
-    this.availableRoomsByDate = dateRange.reduce((acc, date) => {
-      let foundRooms = this.bookings.filter(booking => {
-        return booking.date !== date
-      }).map(booking => booking.roomNumber)
-      foundRooms.forEach(number => {
-        if (!acc.includes(number)) {
-          acc.push(number)
-        }
-      })
+  filterRoomsByDate(date) {
+    let roomsNotBooked = this.bookings.filter(booking => {
+      return booking.date !== date
+    }).map(booking => booking.roomNumber)
+    this.availableRoomsByDate = this.rooms.reduce((acc, room) => {
+      if (roomsNotBooked.includes(room.number)) {
+        acc.push(room)
+      }
       return acc
     }, [])
-  };
+    if (roomsNotBooked.length === 0) {
+      return `We sincerely apologize, but no rooms match your search criteria!`
+    }
+  }
   filterRoomsByRoomType(roomType) {
-    this.availableRoomsByDate.forEach(number => {
-      let foundRoom = this.rooms.find(room => room.number === number);
-      if (foundRoom.roomType === roomType) {
-        this.availableRoomsByDateAndFilter.push(foundRoom)
+    let filteredRooms = [];
+    this.availableRoomsByDate.forEach(room => {
+      if (room.roomType === roomType) {
+        filteredRooms.push(room)
       }
     })
-  };
+    filteredRooms.forEach(room => {
+      this.availableRoomsByDateAndFilter.push(room)
+    })
+    if (filteredRooms.length === 0) {
+      return `We sincerely apologize, but no rooms match your search criteria!`
+    }
+  }
 }
 
 export default RoomTracker;
