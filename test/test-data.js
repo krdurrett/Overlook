@@ -269,3 +269,5 @@ const rooms = [
     "costPerNight": 176.36
   }
 ]
+
+export { customers, bookings, rooms };
