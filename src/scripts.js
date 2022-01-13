@@ -21,6 +21,7 @@ const fetchAll = () => {
       let randomCustomer = getRandomElement(data[0].customers);
       customer = new Customer(randomCustomer, data[2].bookings, data[1].rooms);
       roomTracker = new RoomTracker(data[1].rooms, data[2].bookings);
+      displayRandomUser(customer);
     })
     .catch(err => console.log(err))
 }
@@ -30,5 +31,11 @@ const getRandomElement = array => {
   return array[randomIndex];
 }
 
+const displayRandomUser = (customer) => {
+  customer.findMyBookings()
+  customer.calculateTotalCost()
+  domUpdates.showRandomUser(customer);
+}
+
 //Event Listeners
-window.addEventListener('load', fetchAll)
+window.addEventListener('load', fetchAll);

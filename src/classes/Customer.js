@@ -13,10 +13,11 @@ class Customer {
     })
   }
   calculateTotalCost() {
-    this.totalCost = this.myBookings.reduce((acc, booking) => {
+     let cost = this.myBookings.reduce((acc, booking) => {
       acc += this.rooms.find(room => room.number === booking.roomNumber).costPerNight
       return acc
     }, 0)
+    this.totalCost = Math.round(cost * 100) / 100
   }
 }
 

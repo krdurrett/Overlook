@@ -48,14 +48,9 @@ main {
 }
 
 .date-selector {
-  // display: block;
   color: #DEDEDC;
   margin-left: 180px;
 }
-
-// .date-input {
-//     margin: .4rem 0;
-// }
 
 .dashboard-view,
 .log-in-view,
@@ -79,14 +74,31 @@ main {
 }
 
 .bookings-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 85%;
   font-size: 35px;
+}
+
+.booking-list-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .booking-list {
   display: flex;
-  flex-direction: column;
-  padding: 20px;
-  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 300px;
+  font-size: 25px;
+  height: 100%;
+  width: 50%;
+  border: 2px solid purple;
 }
 
 .log-in-form {
