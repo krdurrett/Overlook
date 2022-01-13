@@ -48,4 +48,14 @@ describe('RoomTracker', () => {
     expect(roomTracker.availableRoomsByDate.length).to.equal(13);
     expect(roomTracker1.availableRoomsByDate.length).to.equal(0);
   });
+  it('Should be able to filter available rooms by room type', () => {
+    let dateRange = ["2022/01/19", "2022/01/20", "2022/01/21", "2022/01/22", "2022/01/23", "2022/01/24"]
+    roomTracker.filterRoomsByDateRange(dateRange);
+    roomTracker.filterRoomsByRoomType("single room");
+    expect(roomTracker.availableRoomsByDateAndFilter).to.be.a('array');
+    expect(roomTracker.availableRoomsByDateAndFilter.length).to.equal(6);
+  })
+  it('Should apologize if no rooms are available under search criteria', () => {
+    
+  })
 });
