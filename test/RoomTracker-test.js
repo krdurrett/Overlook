@@ -38,6 +38,14 @@ describe('RoomTracker', () => {
       "roomNumber": 12,
       "roomServiceCharges": []
     });
-    expect(roomTracker1.bookings.length).to.equal(0)
-  })
+    expect(roomTracker1.bookings.length).to.equal(0);
+  });
+  it('Should be able to filter room availability by multiple dates', () => {
+    let dateRange = ["2022/01/19", "2022/01/20", "2022/01/21", "2022/01/22", "2022/01/23", "2022/01/24"]
+    roomTracker.filterRoomsByDateRange(dateRange);
+    roomTracker1.filterRoomsByDateRange(dateRange);
+    expect(roomTracker.availableRoomsByDate).to.be.a('array');
+    expect(roomTracker.availableRoomsByDate.length).to.equal(13);
+    expect(roomTracker1.availableRoomsByDate.length).to.equal(0);
+  });
 });
