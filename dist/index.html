@@ -22,10 +22,14 @@
         <p>THE OVERLOOK</p>
       </div>
       <div>
-        <button>BOOK A ROOM</button>
+        <!-- <button>BOOK A ROOM</button> -->
+        <label class="date-selector" for="start">Check In:</label>
+        <input class="date-input" type="date" id="start" name="start-date" value="" min="2022-01-01" max="2022-12-31">
+        <label class="date-selector" for="end">Check Out:</label>
+        <input class="date-input" type="date" id="end" name="end-date" value="" min="2022-01-01" max="2022-12-31">
       </div>
     </nav>
-    <section class="dashboard-view hidden">
+    <section class="dashboard-view">
       <section class="heading">
         <p>Welcome User 7</p>
       </section>
@@ -88,7 +92,7 @@
         <button>Filter Rooms</button>
       </section>
     </section>
-    <section class="error-message-view">
+    <section class="error-message-view hidden">
       <section class="heading">
         <p>We sincerely apologize, but no rooms match your search criteria!</p>
       <section>
