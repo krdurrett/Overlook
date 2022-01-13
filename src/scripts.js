@@ -10,10 +10,24 @@ import { fetchAllCustomers, fetchAllRooms, fetchAllBookings } from './apiCalls';
 //Query Selectors
 const dashboardView = document.querySelector('#dashboardView');
 
+//Global Variables
+let customer;
+let roomTracker;
 
 //Functions
 const fetchAll = () => {
-  Promise.all()
+  Promise.all([fetchAllCustomers(), fetchAllRooms(), fetchAllBookings()])
+    .then(data => {
+      let randomCustomer = getRandomElement(data[0].customers);
+      customer = new Customer(randomCustomer, data[2].bookings, data[1].rooms);
+      roomTracker = new RoomTracker(data[1].rooms, data[2].bookings);
+    })
+    .catch(err => console.log(err))
+}
+
+const getRandomElement = array => {
+  var randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
 }
 
 //Event Listeners
