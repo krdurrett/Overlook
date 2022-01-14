@@ -60,6 +60,31 @@ let domUpdates = {
       </section>
       `
     })
+  },
+  showAvailabilityByRoomType(roomTracker, roomType) {
+    bookingPageHeading.innerText = `Available Bookings for a ${roomType}`;
+    bookingCardSection.innerHTML = ``;
+    roomTracker.availableRoomsByDateAndFilter.forEach(room => {
+      bookingCardSection.innerHTML += `
+      <section class="booking-card">
+        <div>
+          <p>Room Details</p>
+        </div>
+        <div class="room-detail-list">
+          <ul>
+            <li>Room Number: ${room.number}</li>
+            <li>Type of Room: ${room.roomType}</li>
+            <li>Beds: ${room.numBeds} ${room.bedSize}/s</li>
+            <li>Has bidet? ${room.bidet}</li>
+            <li>Cost Per Night: $${room.costPerNight}</li>
+          <ul>
+        </div>
+        <div>
+          <button>Book Room</button>
+        </div>
+      </section>
+      `
+    })
   }
 }
  export default domUpdates;

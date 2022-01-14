@@ -12,6 +12,7 @@ const dashboardView = document.querySelector('#dashboardView');
 const bookingPageView = document.querySelector('#bookingPageView');
 const bookRoomButton = document.querySelector('#bookRoomButton');
 const filterRoomButton = document.querySelector('#filterRoomButton');
+const filterByRoomTypeButton = document.querySelector('#filterByRoomTypeButton');
 const selectedDate = document.querySelector('#selectedDate');
 const bookingCardSection = document.querySelector('#bookingCardSection');
 const bookingPageHeading = document.querySelector('#bookingPageHeading');
@@ -30,13 +31,6 @@ const fetchAll = () => {
       customer = new Customer(randomCustomer, data[2].bookings, data[1].rooms);
       roomTracker = new RoomTracker(data[1].rooms, data[2].bookings);
       displayRandomUser(customer);
-      // console.log(data[2].bookings.map(booking => booking.date))
-      // console.log(data[2].bookings.filter(booking => {return booking.date === '2022/01/18'}).map(booking => booking.roomNumber).reduce((acc, number) => {
-      //   if (!acc.includes(number)) {
-      //     acc.push(number)
-      //   }
-      //   return acc
-      // }, []))
     })
     .catch(err => console.log(err))
 }
@@ -70,9 +64,19 @@ const stateHandle = () => {
 }
 
 const displayFilterView = () => {
-  // console.log(roomTracker.availableRoomsByDate)
   domUpdates.addHidden([bookingPageView]);
   domUpdates.removeHidden([filterView])
+}
+
+const displayAvailabilityByRoomType = () => {
+  event.preventDefault();
+  domUpdates.addHidden([filterView]);
+  domUpdates.removeHidden([bookingPageView]);
+  let userSelectedRoomType = document.querySelector('input[name="roomType"]:checked').value;
+  roomTracker.filterRoomsByRoomType(userSelectedRoomType);
+  console.log(roomTracker.availableRoomsByDate)
+  console.log(roomTracker.availableRoomsByDateAndFilter)
+  domUpdates.showAvailabilityByRoomType(roomTracker, userSelectedRoomType);
 }
 
 //Event Listeners
@@ -80,3 +84,4 @@ window.addEventListener('load', fetchAll);
 bookRoomButton.addEventListener('click', displayAvailabilityByDate);
 selectedDate.addEventListener('change', stateHandle);
 filterRoomButton.addEventListener('click', displayFilterView);
+filterByRoomTypeButton.addEventListener('click', displayAvailabilityByRoomType);
