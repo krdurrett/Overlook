@@ -27,7 +27,7 @@
         <button id="bookRoomButton">BOOK A ROOM</button>
       </form>
     </nav>
-    <section class="dashboard-view" id="dashboardView">
+    <section class="dashboard-view hidden" id="dashboardView">
       <div class="heading">
         <p>Welcome User 7</p>
       </div>
@@ -69,7 +69,6 @@
         <p>Available Bookings for Selected Date</p>
       </section>
       <section class="booking-card-section" id="bookingCardSection">
-        <!-- innerHTML will go here -->
         <section class="booking-card">
           <div>
             <p>Room Details</p>
@@ -87,7 +86,26 @@
         </section>
       </section>
       <section class="filter-button-section">
-        <button>Filter Rooms</button>
+        <button id="filterRoomButton">Filter Rooms</button>
+      </section>
+    </section>
+    <section class="filter-view" id="filterView">
+      <section class="heading">
+        <p>Filter Available Rooms by Room Type</p>
+      <section>
+      <section>
+        <form class="room-types">
+          <div>
+            <input type="radio" name="single">
+            <label for="single">Single</label>
+          <div>
+            <input type="radio" name="double">
+            <label for="double">double</label>
+          </div>
+        </form>
+      </section>
+      <section class="filter-rooms-section">
+        <button>Filter</button>
       </section>
     </section>
     <section class="error-message-view hidden">

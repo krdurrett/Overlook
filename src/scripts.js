@@ -11,9 +11,11 @@ import { fetchAllCustomers, fetchAllRooms, fetchAllBookings } from './apiCalls';
 const dashboardView = document.querySelector('#dashboardView');
 const bookingPageView = document.querySelector('#bookingPageView');
 const bookRoomButton = document.querySelector('#bookRoomButton');
+const filterRoomButton = document.querySelector('#filterRoomButton');
 const selectedDate = document.querySelector('#selectedDate');
 const bookingCardSection = document.querySelector('#bookingCardSection');
 const bookingPageHeading = document.querySelector('#bookingPageHeading');
+const filterView = document.querySelector('#filterView');
 
 //Global Variables
 let customer;
@@ -50,8 +52,6 @@ const displayAvailabilityByDate = () => {
   let userSelectedDate = selectedDate.value.replace('-', '/').replace('-', '/');
   roomTracker.filterRoomsByDate(userSelectedDate);
   domUpdates.showAvailabilityByDate(roomTracker, userSelectedDate);
-  // console.log(roomTracker)
-  // console.log(`${selectedDate.value.replace('-', '/').replace('-', '/').slice(5, 10)}/2022`)
 }
 
 const stateHandle = () => {
@@ -62,7 +62,13 @@ const stateHandle = () => {
   }
 }
 
+const displayFilterView = () => {
+  domUpdates.addHidden([bookingPageView]);
+  domUpdates.removeHidden([filterView])
+}
+
 //Event Listeners
 window.addEventListener('load', fetchAll);
 bookRoomButton.addEventListener('click', displayAvailabilityByDate);
-selectedDate.addEventListener("change", stateHandle);
+selectedDate.addEventListener('change', stateHandle);
+filterRoomButton.addEventListener('click', displayFilterView);
