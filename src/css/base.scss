@@ -43,13 +43,16 @@ main {
     font-weight: bold;
     font-size: 45px;
     color: #DEDEDC;
-    margin: 10px 10px 10px 510px;
+    margin: 10px 10px 10px 10px;
   }
+}
+
+.nav-title {
+  margin-left: 300px;
 }
 
 .date-selector {
   color: #DEDEDC;
-  margin-left: 180px;
 }
 
 .dashboard-view,
