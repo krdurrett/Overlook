@@ -17,6 +17,7 @@ const selectedDate = document.querySelector('#selectedDate');
 const bookingCardSection = document.querySelector('#bookingCardSection');
 const bookingPageHeading = document.querySelector('#bookingPageHeading');
 const filterView = document.querySelector('#filterView');
+const errorMessageView = document.querySelector('#errorMessageView');
 
 //Global Variables
 let customer;
@@ -48,11 +49,16 @@ const displayRandomUser = (customer) => {
 
 const displayAvailabilityByDate = () => {
   event.preventDefault();
-  domUpdates.addHidden([dashboardView]);
-  domUpdates.removeHidden([bookingPageView]);
   let userSelectedDate = selectedDate.value.replace('-', '/').replace('-', '/');
   roomTracker.filterRoomsByDate(userSelectedDate);
-  domUpdates.showAvailabilityByDate(roomTracker, userSelectedDate);
+  if (roomTracker.availableRoomsByDate.length === 0) {
+    domUpdates.addHidden([dashboardView, bookingPageView, filterView]);
+    domUpdates.removeHidden([errorMessageView]);
+  } else {
+    domUpdates.addHidden([dashboardView, filterView, errorMessageView]);
+    domUpdates.removeHidden([bookingPageView]);
+    domUpdates.showAvailabilityByDate(roomTracker, userSelectedDate);
+  }
 }
 
 const stateHandle = () => {
@@ -64,19 +70,23 @@ const stateHandle = () => {
 }
 
 const displayFilterView = () => {
-  domUpdates.addHidden([bookingPageView]);
+  domUpdates.addHidden([bookingPageView, dashboardView, errorMessageView]);
   domUpdates.removeHidden([filterView])
 }
 
 const displayAvailabilityByRoomType = () => {
   event.preventDefault();
-  domUpdates.addHidden([filterView]);
-  domUpdates.removeHidden([bookingPageView]);
   let userSelectedRoomType = document.querySelector('input[name="roomType"]:checked').value;
   roomTracker.filterRoomsByRoomType(userSelectedRoomType);
-  console.log(roomTracker.availableRoomsByDate)
-  console.log(roomTracker.availableRoomsByDateAndFilter)
-  domUpdates.showAvailabilityByRoomType(roomTracker, userSelectedRoomType);
+  if (roomTracker.availableRoomsByDateAndFilter.length === 0) {
+    domUpdates.addHidden([dashboardView, filterView, bookingPageView]);
+    domUpdates.removeHidden([errorMessageView]);
+  } else {
+    domUpdates.addHidden([filterView, errorMessageView, dashboardView]);
+    domUpdates.removeHidden([bookingPageView]);
+    domUpdates.showAvailabilityByRoomType(roomTracker, userSelectedRoomType);
+  }
+
 }
 
 //Event Listeners
