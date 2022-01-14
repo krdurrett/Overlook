@@ -24,7 +24,7 @@
       <div>
         <label class="date-selector" for="selectedDate">Select a date:</label>
         <input class="date-input" type="date" id="selectedDate" name="start-date" value="" min="2022-01-01" max="2022-12-31">
-        <button>BOOK A ROOM</button>
+        <button id="bookRoomButton">BOOK A ROOM</button>
       </div>
     </nav>
     <section class="dashboard-view" id="dashboardView">
@@ -64,9 +64,9 @@
         </div>
       </div>
     </section>
-    <section class="booking-page-view hidden">
+    <section class="booking-page-view hidden" id="bookingPageView">
       <section class="heading">
-        <p>Available Bookings for Selected Dates</p>
+        <p>Available Bookings for Selected Date</p>
       </section>
       <section class="booking-card-section">
         <!-- innerHTML will go here -->

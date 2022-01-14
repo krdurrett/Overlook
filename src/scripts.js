@@ -9,6 +9,9 @@ import { fetchAllCustomers, fetchAllRooms, fetchAllBookings } from './apiCalls';
 
 //Query Selectors
 const dashboardView = document.querySelector('#dashboardView');
+const bookingPageView = document.querySelector('#bookingPageView');
+const bookRoomButton = document.querySelector('#bookRoomButton');
+const selectedDate = document.querySelector('#selectedDate');
 
 //Global Variables
 let customer;
@@ -32,11 +35,16 @@ const getRandomElement = array => {
 }
 
 const displayRandomUser = (customer) => {
-  customer.findMyBookings()
-  customer.calculateTotalCost()
-  console.log(customer.myBookings)
+  customer.findMyBookings();
+  customer.calculateTotalCost();
   domUpdates.showRandomUser(customer);
+}
+
+const displayAvailabilityByDate = () => {
+  domUpdates.addHidden([dashboardView]);
+  domUpdates.removeHidden([bookingPageView]);
 }
 
 //Event Listeners
 window.addEventListener('load', fetchAll);
+bookRoomButton.addEventListener('click', displayAvailabilityByDate);
