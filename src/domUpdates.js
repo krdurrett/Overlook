@@ -16,24 +16,24 @@ let domUpdates = {
   showRandomUser(customer) {
     dashboardView.innerHTML = ``;
     let bookingsList = customer.myBookings.reduce((acc, booking) => {
-      acc += `<li>Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}</li>`
+      acc += `<li class="booking">Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}</li>`
       return acc
     }, ``);
     dashboardView.innerHTML = `
-      <section class="heading">
+      <div class="heading">
         <p>Welcome ${customer.name}</p>
-      </section>
-      <section class="bookings-history">
-        <section>
+      </div>
+      <div class="bookings-history">
+        <div class="booking-title">
           <p>Bookings History</p>
-        </section>
-        <section>
+        </div>
+        <div class="booking-list-section">
           <ul class="booking-list">${bookingsList}</ul>
-        </section>
-        <section>
+        </div>
+        <div>
           <p>Total Cost $${customer.totalCost}</p>
-        </section>
-      </section>
+        </div>
+      </div>
     `
   }
 }
