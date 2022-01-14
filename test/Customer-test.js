@@ -9,8 +9,8 @@ describe('Customer', () => {
   let customer1;
 
   beforeEach(() => {
-    customer = new Customer(customers[0], bookings);
-    customer1 = new Customer({}, []);
+    customer = new Customer(customers[0], bookings, rooms);
+    customer1 = new Customer({}, [], []);
   });
   it('should be a function', () => {
     expect(Customer).to.be.a('function');
@@ -30,6 +30,10 @@ describe('Customer', () => {
     expect(customer.allBookings).to.be.a('array');
     expect(customer1.allBookings.length).to.equal(0);
   });
+  it('Should be able to store rooms', () => {
+    expect(customer.rooms).to.be.a('array');
+    expect(customer1.rooms.length).to.equal(0);
+  })
   it('Should be able to show all room bookings', () => {
     customer.findMyBookings();
     expect(customer.myBookings).to.be.a('array');
@@ -42,4 +46,10 @@ describe('Customer', () => {
     }])
     expect(customer1.myBookings.length).to.equal(0);
   });
+  it('Should be able to calculate total cost of all bookings', () => {
+    customer.findMyBookings();
+    customer.calculateTotalCost();
+    expect(customer.totalCost).to.equal(172.09);
+    expect(customer1.totalCost).to.equal(undefined);
+  })
 });

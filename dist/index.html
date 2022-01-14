@@ -18,38 +18,34 @@
       <div>
         <button>HOME</button>
       </div>
-      <div>
+      <div class="nav-title">
         <p>THE OVERLOOK</p>
       </div>
       <div>
-        <!-- <button>BOOK A ROOM</button> -->
-        <label class="date-selector" for="start">Check In:</label>
-        <input class="date-input" type="date" id="start" name="start-date" value="" min="2022-01-01" max="2022-12-31">
-        <label class="date-selector" for="end">Check Out:</label>
-        <input class="date-input" type="date" id="end" name="end-date" value="" min="2022-01-01" max="2022-12-31">
-      </div>
-      <div>
+        <label class="date-selector" for="selectedDate">Select a date:</label>
+        <input class="date-input" type="date" id="selectedDate" name="start-date" value="" min="2022-01-01" max="2022-12-31">
+        <button>BOOK A ROOM</button>
       </div>
     </nav>
-    <section class="dashboard-view">
-      <section class="heading">
+    <section class="dashboard-view" id="dashboardView">
+      <div class="heading">
         <p>Welcome User 7</p>
-      </section>
-      <section class="bookings-history">
-        <section>
+      </div>
+      <div class="bookings-history">
+        <div class="booking-title">
           <p>Bookings History</p>
-        </section>
-        <section>
+        </div>
+        <div class="booking-list-section">
           <ul class="booking-list">
             <li>Booking Info 1</li>
             <li>Booking Info 2</li>
             <li>Booking Info 3</li>
           </ul>
-        </section>
-        <section>
+        </div>
+        <div>
           <p>Total Cost $$$$$</p>
-        </section>
-      </section>
+        </div>
+      </div>
     </section>
     <section class="log-in-view hidden">
       <section class="heading">
