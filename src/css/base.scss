@@ -192,25 +192,26 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 75%;
 }
 
 .room-types {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   font-size: 30px;
   height: 100%;
   width: 50%;
 }
 
-// .error-message-view {
-//
-//   .heading {
-//     font-weight: bold;
-//     font-size: 30px;
-//     margin-bottom: 100px;
-//   }
-// }
+.error-message-view {
+
+  .heading {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 100px;
+  }
+}
 
 .try-again-button {
   display: flex;

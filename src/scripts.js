@@ -13,6 +13,7 @@ const bookingPageView = document.querySelector('#bookingPageView');
 const bookRoomButton = document.querySelector('#bookRoomButton');
 const filterRoomButton = document.querySelector('#filterRoomButton');
 const filterByRoomTypeButton = document.querySelector('#filterByRoomTypeButton');
+const tryAgainButton = document.querySelector('#tryAgainButton');
 const selectedDate = document.querySelector('#selectedDate');
 const bookingCardSection = document.querySelector('#bookingCardSection');
 const bookingPageHeading = document.querySelector('#bookingPageHeading');
@@ -49,6 +50,7 @@ const displayRandomUser = (customer) => {
 
 const displayAvailabilityByDate = () => {
   event.preventDefault();
+  roomTracker.availableRoomsByDate = [];
   let userSelectedDate = selectedDate.value.replace('-', '/').replace('-', '/');
   roomTracker.filterRoomsByDate(userSelectedDate);
   if (roomTracker.availableRoomsByDate.length === 0) {
@@ -75,7 +77,7 @@ const displayFilterView = () => {
 }
 
 const displayAvailabilityByRoomType = () => {
-  event.preventDefault();
+  roomTracker.availableRoomsByDateAndFilter = [];
   let userSelectedRoomType = document.querySelector('input[name="roomType"]:checked').value;
   roomTracker.filterRoomsByRoomType(userSelectedRoomType);
   if (roomTracker.availableRoomsByDateAndFilter.length === 0) {
@@ -86,7 +88,11 @@ const displayAvailabilityByRoomType = () => {
     domUpdates.removeHidden([bookingPageView]);
     domUpdates.showAvailabilityByRoomType(roomTracker, userSelectedRoomType);
   }
+}
 
+const goBackToDashboard = () => {
+  domUpdates.addHidden([errorMessageView]);
+  domUpdates.removeHidden([dashboardView]);
 }
 
 //Event Listeners
@@ -95,3 +101,4 @@ bookRoomButton.addEventListener('click', displayAvailabilityByDate);
 selectedDate.addEventListener('change', stateHandle);
 filterRoomButton.addEventListener('click', displayFilterView);
 filterByRoomTypeButton.addEventListener('click', displayAvailabilityByRoomType);
+tryAgainButton.addEventListener('click', goBackToDashboard);
