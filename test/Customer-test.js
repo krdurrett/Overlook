@@ -38,11 +38,9 @@ describe('Customer', () => {
     customer.findMyBookings();
     expect(customer.myBookings).to.be.a('array');
     expect(customer.myBookings).to.deep.equal([{
-      "id": "5fwrgu4i7k55hl6t8",
-      "userID": 1,
-      "date": "2022/02/05",
-      "roomNumber": 12,
-      "roomServiceCharges": []
+      "bookingDate": "02/05/2022",
+      "cost": 172.09,
+      "roomNumber": 12
     }])
     expect(customer1.myBookings.length).to.equal(0);
   });
