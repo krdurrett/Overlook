@@ -16,6 +16,7 @@ const selectedDate = document.querySelector('#selectedDate');
 //Global Variables
 let customer;
 let roomTracker;
+bookRoomButton.disabled = true;
 
 //Functions
 const fetchAll = () => {
@@ -41,10 +42,20 @@ const displayRandomUser = (customer) => {
 }
 
 const displayAvailabilityByDate = () => {
+  event.preventDefault();
   domUpdates.addHidden([dashboardView]);
   domUpdates.removeHidden([bookingPageView]);
+}
+
+const stateHandle = () => {
+  if(document.querySelector("#selectedDate").value === "") {
+    bookRoomButton.disabled = true;
+  } else {
+    bookRoomButton.disabled = false;
+  }
 }
 
 //Event Listeners
 window.addEventListener('load', fetchAll);
 bookRoomButton.addEventListener('click', displayAvailabilityByDate);
+selectedDate.addEventListener("change", stateHandle);
