@@ -30,6 +30,13 @@ const fetchAll = () => {
       customer = new Customer(randomCustomer, data[2].bookings, data[1].rooms);
       roomTracker = new RoomTracker(data[1].rooms, data[2].bookings);
       displayRandomUser(customer);
+      // console.log(data[2].bookings.map(booking => booking.date))
+      // console.log(data[2].bookings.filter(booking => {return booking.date === '2022/01/18'}).map(booking => booking.roomNumber).reduce((acc, number) => {
+      //   if (!acc.includes(number)) {
+      //     acc.push(number)
+      //   }
+      //   return acc
+      // }, []))
     })
     .catch(err => console.log(err))
 }
@@ -63,6 +70,7 @@ const stateHandle = () => {
 }
 
 const displayFilterView = () => {
+  // console.log(roomTracker.availableRoomsByDate)
   domUpdates.addHidden([bookingPageView]);
   domUpdates.removeHidden([filterView])
 }

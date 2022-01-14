@@ -185,17 +185,22 @@ main {
 .filter-rooms-section {
   display: flex;
   justify-content: center;
+  margin-top: 25px;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .room-types {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   font-size: 30px;
   height: 100%;
-  width: 100%;
-  border: 2px solid red;
-  overflow-y: auto;
+  width: 50%;
 }
 
 .error-message-view {

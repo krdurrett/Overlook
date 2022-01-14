@@ -27,7 +27,7 @@
         <button id="bookRoomButton">BOOK A ROOM</button>
       </form>
     </nav>
-    <section class="dashboard-view hidden" id="dashboardView">
+    <section class="dashboard-view" id="dashboardView">
       <div class="heading">
         <p>Welcome User 7</p>
       </div>
@@ -89,18 +89,27 @@
         <button id="filterRoomButton">Filter Rooms</button>
       </section>
     </section>
-    <section class="filter-view" id="filterView">
+    <section class="filter-view hidden" id="filterView">
       <section class="heading">
         <p>Filter Available Rooms by Room Type</p>
       <section>
-      <section>
+      <section class="form">
         <form class="room-types">
           <div>
-            <input type="radio" name="single">
-            <label for="single">Single</label>
+            <input type="radio" name="roomType" value="residential suite">
+            <label for="residential">Residential Suite</label>
+          </div>
           <div>
-            <input type="radio" name="double">
-            <label for="double">double</label>
+            <input type="radio" name="roomType" value="junior suite">
+            <label for="junior">Junior Suite</label>
+          </div>
+          <div>
+            <input type="radio" name="roomType" value="suite">
+            <label for="suite">Suite</label>
+          </div>
+          <div>
+            <input type="radio" name="roomType" value="single room">
+            <label for="single">Single Room</label>
           </div>
         </form>
       </section>
