@@ -20,7 +20,7 @@ class Customer {
     })
     this.myBookings = dateCorrectBookings.sort((a, b) => {
       let aDate = a.bookingDate.slice(0, 5).replace('/','')
-      let bDate = b.bookingDate.slice(0, 5).replace('/', '')
+      let bDate = b.bookingDate.slice(0, 5).replace('/','')
       if (aDate < bDate) {
         return -1
       }

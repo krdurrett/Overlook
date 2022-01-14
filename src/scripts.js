@@ -12,6 +12,8 @@ const dashboardView = document.querySelector('#dashboardView');
 const bookingPageView = document.querySelector('#bookingPageView');
 const bookRoomButton = document.querySelector('#bookRoomButton');
 const selectedDate = document.querySelector('#selectedDate');
+const bookingCardSection = document.querySelector('#bookingCardSection');
+const bookingPageHeading = document.querySelector('#bookingPageHeading');
 
 //Global Variables
 let customer;
@@ -45,6 +47,11 @@ const displayAvailabilityByDate = () => {
   event.preventDefault();
   domUpdates.addHidden([dashboardView]);
   domUpdates.removeHidden([bookingPageView]);
+  let userSelectedDate = selectedDate.value.replace('-', '/').replace('-', '/');
+  roomTracker.filterRoomsByDate(userSelectedDate);
+  domUpdates.showAvailabilityByDate(roomTracker, userSelectedDate);
+  // console.log(roomTracker)
+  // console.log(`${selectedDate.value.replace('-', '/').replace('-', '/').slice(5, 10)}/2022`)
 }
 
 const stateHandle = () => {
