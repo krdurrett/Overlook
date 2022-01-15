@@ -49,13 +49,13 @@ let domUpdates = {
           <ul>
             <li>Room Number: ${room.number}</li>
             <li>Type of Room: ${room.roomType}</li>
-            <li>Beds: ${room.numBeds} ${room.bedSize}/s</li>
+            <li>Beds: ${room.numBeds} ${room.bedSize}(s)</li>
             <li>Has bidet? ${room.bidet}</li>
             <li>Cost Per Night: $${room.costPerNight}</li>
-          <ul>
+          </ul>
         </div>
         <div>
-          <button>Book Room</button>
+          <button class="book-room-button" id="${room.number}">Book Room</button>
         </div>
       </section>
       `
@@ -74,17 +74,18 @@ let domUpdates = {
           <ul>
             <li>Room Number: ${room.number}</li>
             <li>Type of Room: ${room.roomType}</li>
-            <li>Beds: ${room.numBeds} ${room.bedSize}/s</li>
+            <li>Beds: ${room.numBeds} ${room.bedSize}(s)</li>
             <li>Has bidet? ${room.bidet}</li>
             <li>Cost Per Night: $${room.costPerNight}</li>
-          <ul>
+          </ul>
         </div>
         <div>
-          <button>Book Room</button>
+          <button class="book-room-button" id="${room.number}">Book Room</button>
         </div>
       </section>
       `
     })
   }
 }
- export default domUpdates;
+
+export default domUpdates;

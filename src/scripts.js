@@ -5,7 +5,7 @@ import './images/turing-logo.png';
 import Customer from './classes/Customer';
 import RoomTracker from './classes/RoomTracker';
 import domUpdates from './domUpdates';
-import { fetchAllCustomers, fetchAllRooms, fetchAllBookings } from './apiCalls';
+import { fetchAllCustomers, fetchAllRooms, fetchAllBookings, addABooking } from './apiCalls';
 
 //Query Selectors
 const dashboardView = document.querySelector('#dashboardView');
@@ -95,6 +95,22 @@ const goBackToDashboard = () => {
   domUpdates.removeHidden([dashboardView]);
 }
 
+const determineButtonAction = event => {
+  if (event.target.classList.contains('book-room-button')) {
+    bookARoom(event);
+  }
+}
+
+const bookARoom = event => {
+  let userID = customer.id
+  let date = document.querySelector("#selectedDate").value.replace('-', '/').replace('-', '/')
+  let roomNumber = parseInt(event.target.id)
+  console.log("userID", customer.id)
+  console.log("date", document.querySelector("#selectedDate").value.replace('-', '/').replace('-', '/'))
+  console.log("roomNumber", parseInt(event.target.id))
+  addABooking(customer.id, date, roomNumber)
+}
+
 //Event Listeners
 window.addEventListener('load', fetchAll);
 bookRoomButton.addEventListener('click', displayAvailabilityByDate);
@@ -102,3 +118,5 @@ selectedDate.addEventListener('change', stateHandle);
 filterRoomButton.addEventListener('click', displayFilterView);
 filterByRoomTypeButton.addEventListener('click', displayAvailabilityByRoomType);
 tryAgainButton.addEventListener('click', goBackToDashboard);
+bookingCardSection.addEventListener('click', event => {
+  determineButtonAction(event)});
