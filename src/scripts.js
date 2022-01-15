@@ -10,6 +10,9 @@ import { fetchAllCustomers, fetchAllRooms, fetchAllBookings, addABooking } from 
 //Query Selectors
 const dashboardView = document.querySelector('#dashboardView');
 const bookingPageView = document.querySelector('#bookingPageView');
+const filterView = document.querySelector('#filterView');
+const errorMessageView = document.querySelector('#errorMessageView');
+const successView = document.querySelector('#successView');
 const bookRoomButton = document.querySelector('#bookRoomButton');
 const filterRoomButton = document.querySelector('#filterRoomButton');
 const filterByRoomTypeButton = document.querySelector('#filterByRoomTypeButton');
@@ -17,10 +20,7 @@ const tryAgainButton = document.querySelector('#tryAgainButton');
 const selectedDate = document.querySelector('#selectedDate');
 const bookingCardSection = document.querySelector('#bookingCardSection');
 const bookingPageHeading = document.querySelector('#bookingPageHeading');
-const filterView = document.querySelector('#filterView');
-const errorMessageView = document.querySelector('#errorMessageView');
 const errorMessage = document.querySelector('#errorMessage');
-const successView = document.querySelector('#successView');
 
 //Global Variables
 let customer;
@@ -98,7 +98,7 @@ const displayAvailabilityByRoomType = () => {
 }
 
 const goBackToDashboard = () => {
-  domUpdates.addHidden([errorMessageView]);
+  domUpdates.addHidden([errorMessageView, successView, bookingPageView, filterView]);
   domUpdates.removeHidden([dashboardView]);
 }
 
