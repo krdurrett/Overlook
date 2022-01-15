@@ -1,3 +1,5 @@
+import { determineAPIResponse } from './scripts';
+
 export const fetchAllCustomers = () => {
     return fetch('http://localhost:3001/api/v1/customers')
       .then(response => response.json())
@@ -21,5 +23,5 @@ export const addABooking = (userID, date, roomNumber) => {
       'Content-type': 'application/json'
     }
   })
-  .then(response => console.log("post response", response))
+  .then(response => determineAPIResponse(response, date, roomNumber))
 }

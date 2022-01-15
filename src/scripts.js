@@ -19,6 +19,8 @@ const bookingCardSection = document.querySelector('#bookingCardSection');
 const bookingPageHeading = document.querySelector('#bookingPageHeading');
 const filterView = document.querySelector('#filterView');
 const errorMessageView = document.querySelector('#errorMessageView');
+const errorMessage = document.querySelector('#errorMessage');
+const successView = document.querySelector('#successView');
 
 //Global Variables
 let customer;
@@ -34,7 +36,7 @@ const fetchAll = () => {
       roomTracker = new RoomTracker(data[1].rooms, data[2].bookings);
       displayRandomUser(customer);
     })
-    .catch(err => console.log(err))
+    .catch(err => displayGetErrorMessage())
 }
 
 const getRandomElement = array => {
@@ -54,10 +56,12 @@ const displayAvailabilityByDate = () => {
   let userSelectedDate = selectedDate.value.replace('-', '/').replace('-', '/');
   roomTracker.filterRoomsByDate(userSelectedDate);
   if (roomTracker.availableRoomsByDate.length === 0) {
-    domUpdates.addHidden([dashboardView, bookingPageView, filterView]);
+    let message = `We sincerely apologize, but no rooms are available on ${userSelectedDate}!`
+    domUpdates.showErrorMessage(message)
+    domUpdates.addHidden([dashboardView, bookingPageView, filterView, successView]);
     domUpdates.removeHidden([errorMessageView]);
   } else {
-    domUpdates.addHidden([dashboardView, filterView, errorMessageView]);
+    domUpdates.addHidden([dashboardView, filterView, errorMessageView, successView]);
     domUpdates.removeHidden([bookingPageView]);
     domUpdates.showAvailabilityByDate(roomTracker, userSelectedDate);
   }
@@ -72,19 +76,22 @@ const stateHandle = () => {
 }
 
 const displayFilterView = () => {
-  domUpdates.addHidden([bookingPageView, dashboardView, errorMessageView]);
+  domUpdates.addHidden([bookingPageView, dashboardView, errorMessageView, successView]);
   domUpdates.removeHidden([filterView])
 }
 
 const displayAvailabilityByRoomType = () => {
   roomTracker.availableRoomsByDateAndFilter = [];
+  let userSelectedDate = `${selectedDate.value.replace('-', '/').replace('-', '/').slice(5, 10)}/2022`;
   let userSelectedRoomType = document.querySelector('input[name="roomType"]:checked').value;
   roomTracker.filterRoomsByRoomType(userSelectedRoomType);
   if (roomTracker.availableRoomsByDateAndFilter.length === 0) {
-    domUpdates.addHidden([dashboardView, filterView, bookingPageView]);
+    let message = `We sincerely apologize, but no ${userSelectedRoomType}s are available on ${userSelectedDate}!`
+    domUpdates.showErrorMessage(message)
+    domUpdates.addHidden([dashboardView, filterView, bookingPageView, successView]);
     domUpdates.removeHidden([errorMessageView]);
   } else {
-    domUpdates.addHidden([filterView, errorMessageView, dashboardView]);
+    domUpdates.addHidden([filterView, errorMessageView, dashboardView, successView]);
     domUpdates.removeHidden([bookingPageView]);
     domUpdates.showAvailabilityByRoomType(roomTracker, userSelectedRoomType);
   }
@@ -105,10 +112,29 @@ const bookARoom = event => {
   let userID = customer.id
   let date = document.querySelector("#selectedDate").value.replace('-', '/').replace('-', '/')
   let roomNumber = parseInt(event.target.id)
-  console.log("userID", customer.id)
-  console.log("date", document.querySelector("#selectedDate").value.replace('-', '/').replace('-', '/'))
-  console.log("roomNumber", parseInt(event.target.id))
   addABooking(customer.id, date, roomNumber)
+}
+
+export const determineAPIResponse = (response, date, roomNumber) => {
+  if (response.ok) {
+    domUpdates.addHidden([filterView, errorMessageView, dashboardView, bookingPageView])
+    domUpdates.removeHidden([successView])
+    domUpdates.showSuccessMessage(date, roomNumber);
+    window.setTimeout(goBackToDashboard, 3000);
+  } else {
+    domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView])
+    domUpdates.removeHidden([errorMessageView])
+    Promise.resolve(response)
+      .then(resp => resp.json())
+      .then(data => domUpdates.showErrorMessage(data.message))
+  }
+}
+
+const displayGetErrorMessage = () => {
+  let message = `Something went wrong while obtaining data!`;
+  domUpdates.showErrorMessage(message);
+  domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, tryAgainButton])
+  domUpdates.removeHidden([errorMessageView]);
 }
 
 //Event Listeners

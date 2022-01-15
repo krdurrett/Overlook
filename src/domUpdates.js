@@ -85,6 +85,19 @@ let domUpdates = {
       </section>
       `
     })
+  },
+  showSuccessMessage(date, roomNumber) {
+    successView.innerHTML = `
+    <section class="heading">
+      <p>Your room has been booked!</p>
+    </section>
+    <section class="booking-details">
+      <p>Room #${roomNumber} on ${date}</p>
+    </section>
+    `
+  },
+  showErrorMessage(message) {
+    errorMessage.innerText = `${message}`
   }
 }
 
