@@ -59,7 +59,8 @@ main {
 .log-in-view,
 .booking-page-view,
 .error-message-view,
-.filter-view {
+.filter-view,
+.success-view {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -217,6 +218,11 @@ main {
   display: flex;
   justify-content: center;
   margin-top: 100px;
+}
+
+.booking-details {
+  font-weight: bold;
+  font-size: 30px;
 }
 
 input {
