@@ -6,16 +6,16 @@ class RoomTracker {
     this.availableRoomsByDateAndFilter = []
   }
   filterRoomsByDate(date) {
-    let roomsNotBooked = this.bookings.filter(booking => {
-      return booking.date !== date
+    let roomsBooked = this.bookings.filter(booking => {
+      return booking.date === date
     }).map(booking => booking.roomNumber)
     this.availableRoomsByDate = this.rooms.reduce((acc, room) => {
-      if (roomsNotBooked.includes(room.number)) {
+      if (!roomsBooked.includes(room.number)) {
         acc.push(room)
       }
       return acc
     }, [])
-    if (roomsNotBooked.length === 0) {
+    if (this.availableRoomsByDate.length === 0) {
       return `We sincerely apologize, but no rooms match your search criteria!`
     }
   }

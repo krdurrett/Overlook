@@ -21,11 +21,11 @@
       <div class="nav-title">
         <p>THE OVERLOOK</p>
       </div>
-      <div>
+      <form>
         <label class="date-selector" for="selectedDate">Select a date:</label>
-        <input class="date-input" type="date" id="selectedDate" name="start-date" value="" min="2022-01-01" max="2022-12-31">
-        <button>BOOK A ROOM</button>
-      </div>
+        <input class="date-input" type="date" id="selectedDate" name="start-date" value="" min="2022-01-01" max="2022-12-31" required>
+        <button id="bookRoomButton">BOOK A ROOM</button>
+      </form>
     </nav>
     <section class="dashboard-view" id="dashboardView">
       <div class="heading">
@@ -64,38 +64,59 @@
         </div>
       </div>
     </section>
-    <section class="booking-page-view hidden">
-      <section class="heading">
-        <p>Available Bookings for Selected Dates</p>
+    <section class="booking-page-view hidden" id="bookingPageView">
+      <section class="heading" id="bookingPageHeading">
+        <p>Available Bookings for Selected Date</p>
       </section>
-      <section class="booking-card-section">
-        <!-- innerHTML will go here -->
-        <section class="booking-card">
-          <div>
-            <p>Room Details</p>
-          </div>
-          <div class="room-detail-list">
-            <ul>
-              <li>Room Detail 1</li>
-              <li>Room Detail 2</li>
-              <li>Room Detail 3</li>
-            <ul>
-          </div>
-          <div>
-            <button>Book Room</button>
-          </div>
-        </section>
+      <section class="booking-card-section" id="bookingCardSection">
+        <!-- booking cards go here -->
       </section>
       <section class="filter-button-section">
-        <button>Filter Rooms</button>
+        <button id="filterRoomButton">Filter Rooms</button>
       </section>
     </section>
-    <section class="error-message-view hidden">
+    <section class="filter-view hidden" id="filterView">
       <section class="heading">
-        <p>We sincerely apologize, but no rooms match your search criteria!</p>
-      <section>
+        <p>Filter Available Rooms by Room Type</p>
+      </section>
+      <section class="form">
+        <form class="room-types">
+          <div>
+            <input type="radio" name="roomType" value="residential suite">
+            <label for="residential">Residential Suite</label>
+          </div>
+          <div>
+            <input type="radio" name="roomType" value="junior suite">
+            <label for="junior">Junior Suite</label>
+          </div>
+          <div>
+            <input type="radio" name="roomType" value="suite">
+            <label for="suite">Suite</label>
+          </div>
+          <div>
+            <input type="radio" name="roomType" value="single room">
+            <label for="single">Single Room</label>
+          </div>
+        </form>
+      </section>
+      <section class="filter-rooms-section">
+        <button id="filterByRoomTypeButton">Filter</button>
+      </section>
+    </section>
+    <section class="error-message-view hidden" id="errorMessageView">
+      <section class="heading">
+        <p id="errorMessage">We sincerely apologize, but no rooms match your search criteria!</p>
+      </section>
       <section class="try-again-button">
-        <button>Try Again!</button>
+        <button id="tryAgainButton">Try Again!</button>
+      </section>
+    </section>
+    <section class="success-view hidden" id="successView">
+      <section class="heading">
+        <p>Your room has been booked!</p>
+      </section>
+      <section class="booking-details">
+        <p>Room #2 on 01/27/2022 for $300.00</p>
       </section>
     </section>
   </main>
