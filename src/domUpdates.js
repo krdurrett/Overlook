@@ -27,7 +27,7 @@ let domUpdates = {
           <p>Bookings History</p>
         </div>
         <div class="booking-list-section">
-          <ul class="booking-list">${bookingsList}</ul>
+          <ul class="booking-list" tabindex=0>${bookingsList}</ul>
         </div>
         <div>
           <p>Total Cost $${customer.totalCost}</p>
@@ -41,7 +41,7 @@ let domUpdates = {
     bookingCardSection.innerHTML = ``;
     roomTracker.availableRoomsByDate.forEach(room => {
       bookingCardSection.innerHTML += `
-      <section class="booking-card">
+      <section class="booking-card" tabindex=0>
         <div>
           <p>Room Details</p>
         </div>
