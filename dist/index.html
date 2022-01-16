@@ -11,7 +11,7 @@
 </head>
 <body>
   <main>
-    <nav class="log-in-nav" id="logInNav">
+    <nav class="log-in-nav hidden" id="logInNav">
       <div>
         <button id="navHomeButton">HOME</button>
       </div>
@@ -64,7 +64,7 @@
         </div>
       </div>
     </section>
-    <section class="manager-dashboard hidden" id="managerDashboard">
+    <section class="manager-dashboard" id="managerDashboard">
       <div class="heading">
         <p>Welcome Manager</p>
       </div>
@@ -79,9 +79,52 @@
             <li>Total revenue: $1000</li>
           </ul>
         </div>
+        <div class="adjust-customer-bookings">
+          <div class="adjust-bookings-form" id="adjustBookingsForm">
+            <form>
+              <label for="customerName">Customer Name</label>
+              <input type="text" name="customerName" require="required" id="customerNameForManagerBooking">
+              <label for="date">Date</label>
+              <input class="date-input" type="date" id="date" name="start-date" value="" min="2022-01-01" max="2022-12-31" required>
+              <label for="roomNumber">Room Number</label>
+              <input type="number" name="roomNumber" require="required" id="roomNumber">
+            </form>
+            <div>
+              <button id="bookRoomManagerButton">Book Room</button>
+              <button id="deleteRoom">Delete Booking</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="user-management">
+        <div class="find-customer-form" id="findCustomerForm">
+          <form>
+            <label for="customerName">Customer Name</label>
+            <input type="text" name="customerName" require="required" id="customerName">
+          </form>
+          <p class="customer-name-error hidden" id="customerNameError">Customer Not Found, Please retry</p>
+          <div>
+            <button id="logInButton">Find Customer</button>
+          </div>
+        </div>
+        <div class="customer-information-section hidden">
+          <div class="customer-name">
+            <p>Customer: Billy Bob</p>
+          </div>
+          <div class="booking-list-section">
+            <ul class="booking-list" tabindex=0>
+              <li>Booking Info 1</li>
+              <li>Booking Info 2</li>
+              <li>Booking Info 3</li>
+            </ul>
+          </div>
+          <div>
+            <p>Total Cost $$$$$</p>
+          </div>
+        </div>
       </div>
     </section>
-    <section class="log-in-view" id="logInView">
+    <section class="log-in-view hidden" id="logInView">
       <section class="heading">
         <p>Welcome to the Overlook, Please log in:</p>
       </section>
