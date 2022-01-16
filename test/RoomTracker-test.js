@@ -58,26 +58,26 @@ describe('RoomTracker', () => {
   })
   it('Should apologize if no rooms are available under date', () => {
     let bookings = [ {
-        "id": "5fwrgu4i7k55hl6vn",
-        "userID": 4,
-        "date": "2022/02/20",
-        "roomNumber": 1,
-        "roomServiceCharges": []
-      },
-      {
-       "id": "5fwrgu4i7k55hl6vr",
-       "userID": 5,
-       "date": "2022/02/20",
-       "roomNumber": 14,
-       "roomServiceCharges": []
-     },
-     {
-        "id": "5fwrgu4i7k55hl6vu",
-        "userID": 9,
-        "date": "2022/02/20",
-        "roomNumber": 23,
-        "roomServiceCharges": []
-      }
+      "id": "5fwrgu4i7k55hl6vn",
+      "userID": 4,
+      "date": "2022/02/20",
+      "roomNumber": 1,
+      "roomServiceCharges": []
+    },
+    {
+      "id": "5fwrgu4i7k55hl6vr",
+      "userID": 5,
+      "date": "2022/02/20",
+      "roomNumber": 14,
+      "roomServiceCharges": []
+    },
+    {
+      "id": "5fwrgu4i7k55hl6vu",
+      "userID": 9,
+      "date": "2022/02/20",
+      "roomNumber": 23,
+      "roomServiceCharges": []
+    }
     ]
     let rooms = [
       {
@@ -97,13 +97,13 @@ describe('RoomTracker', () => {
         "costPerNight": 457.88
       },
       {
-         "number": 23,
-         "roomType": "residential suite",
-         "bidet": false,
-         "bedSize": "queen",
-         "numBeds": 2,
-         "costPerNight": 176.36
-       }
+        "number": 23,
+        "roomType": "residential suite",
+        "bidet": false,
+        "bedSize": "queen",
+        "numBeds": 2,
+        "costPerNight": 176.36
+      }
     ]
     let roomTracker = new RoomTracker(rooms, bookings);
     roomTracker.filterRoomsByDate("2022/02/20");

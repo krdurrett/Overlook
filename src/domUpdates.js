@@ -1,7 +1,3 @@
-import RoomTracker from './classes/RoomTracker';
-import Customer from './classes/Customer';
-
-
 let domUpdates = {
   addHidden(elements) {
     elements.forEach(item => {

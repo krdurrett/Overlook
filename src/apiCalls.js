@@ -1,8 +1,8 @@
 import { determinePostAPIResponse, determineFetchAPIResponse } from './scripts';
 
 export const fetchAllCustomers = () => {
-    return fetch('http://localhost:3001/api/v1/customers')
-      .then(response => response.json())
+  return fetch('http://localhost:3001/api/v1/customers')
+    .then(response => response.json())
 }
 
 export const fetchSingleCustomer = (userID) => {
@@ -28,5 +28,5 @@ export const addABooking = (userID, date, roomNumber) => {
       'Content-type': 'application/json'
     }
   })
-  .then(response => determinePostAPIResponse(response, date, roomNumber))
+    .then(response => determinePostAPIResponse(response, date, roomNumber))
 }

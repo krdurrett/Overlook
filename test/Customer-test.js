@@ -18,7 +18,7 @@ describe('Customer', () => {
   it('Should instantiate a new instance of Customer', () => {
     expect(customer).to.be.an.instanceOf(Customer);
   });
-  it('Should be able to store a user ID' , () => {
+  it('Should be able to store a user ID', () => {
     expect(customer.id).to.equal(1);
     expect(customer1.id).to.equal(undefined);
   });
