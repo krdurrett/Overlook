@@ -11,10 +11,10 @@
 </head>
 <body>
   <main>
-    <nav class="log-in-nav hidden">
+    <nav class="log-in-nav" id="logInNav">
       <p>THE OVERLOOK</p>
     </nav>
-    <nav class="dashboard-nav">
+    <nav class="dashboard-nav hidden" id="dashboardNav">
       <div>
         <button>HOME</button>
       </div>
@@ -27,7 +27,7 @@
         <button id="bookRoomButton">BOOK A ROOM</button>
       </form>
     </nav>
-    <section class="dashboard-view" id="dashboardView">
+    <section class="dashboard-view hidden" id="dashboardView">
       <div class="heading">
         <p>Welcome User 7</p>
       </div>
@@ -47,20 +47,19 @@
         </div>
       </div>
     </section>
-    <section class="log-in-view hidden">
+    <section class="log-in-view" id="logInView">
       <section class="heading">
         <p>Welcome to the Overlook, Please log in:</p>
       </section>
       <div class="log-in-form">
         <form>
           <label for="userName">User Name</label>
-          <input type="text" name="userName" require="required">
+          <input type="text" name="userName" require="required" id="userName">
           <label for="password">Password</label>
-          <input type="text" name="password" require="required">
+          <input type="text" name="password" require="required" id="password">
         </form>
         <div>
-          <button>LOG-IN</button>
-          <button>Continue As Guest</button>
+          <button id="logInButton">LOG-IN</button>
         </div>
       </div>
     </section>

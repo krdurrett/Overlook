@@ -13,11 +13,17 @@ const bookingPageView = document.querySelector('#bookingPageView');
 const filterView = document.querySelector('#filterView');
 const errorMessageView = document.querySelector('#errorMessageView');
 const successView = document.querySelector('#successView');
+const logInView = document.querySelector('#logInView');
+const logInNav = document.querySelector('#logInNav');
+const dashboardNav = document.querySelector('#dashboardNav');
 const bookRoomButton = document.querySelector('#bookRoomButton');
 const filterRoomButton = document.querySelector('#filterRoomButton');
 const filterByRoomTypeButton = document.querySelector('#filterByRoomTypeButton');
 const tryAgainButton = document.querySelector('#tryAgainButton');
+const logInButton = document.querySelector('#logInButton');
 const selectedDate = document.querySelector('#selectedDate');
+const userName = document.querySelector('#userName');
+const password = document.querySelector('#password');
 const bookingCardSection = document.querySelector('#bookingCardSection');
 const bookingPageHeading = document.querySelector('#bookingPageHeading');
 const errorMessage = document.querySelector('#errorMessage');
@@ -137,6 +143,11 @@ const displayGetErrorMessage = () => {
   domUpdates.removeHidden([errorMessageView]);
 }
 
+const displayUserDashboard = () => {
+  domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, logInNav])
+  domUpdates.removeHidden([dashboardView, dashboardNav])
+}
+
 //Event Listeners
 window.addEventListener('load', fetchAll);
 bookRoomButton.addEventListener('click', displayAvailabilityByDate);
@@ -146,3 +157,4 @@ filterByRoomTypeButton.addEventListener('click', displayAvailabilityByRoomType);
 tryAgainButton.addEventListener('click', goBackToDashboard);
 bookingCardSection.addEventListener('click', event => {
   determineButtonAction(event)});
+logInButton.addEventListener('click', displayUserDashboard);
