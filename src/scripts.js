@@ -23,6 +23,7 @@ const tryAgainButton = document.querySelector('#tryAgainButton');
 const logInButton = document.querySelector('#logInButton');
 const homeButton = document.querySelector('#homeButton');
 const navHomeButton = document.querySelector('#navHomeButton');
+const passwordError = document.querySelector('#passwordError');
 const selectedDate = document.querySelector('#selectedDate');
 const userName = document.querySelector('#userName');
 const password = document.querySelector('#password');
@@ -56,6 +57,7 @@ const getRandomElement = array => {
 const displaySpecificCustomer = (customer) => {
   customer.findMyBookings();
   customer.calculateTotalCost();
+  domUpdates.addHidden([passwordError]);
   domUpdates.showSpecificUser(customer);
 }
 
@@ -169,7 +171,11 @@ const displayGetErrorMessage = () => {
 const logUserIn = () => {
   let userID = parseInt(userName.value.slice(8));
   let userPassword = password.value;
-  fetchSingleCustomer(userID);
+  if (userPassword === 'overlook2021') {
+    fetchSingleCustomer(userID);
+  } else {
+    domUpdates.removeHidden([passwordError]);
+  }
 }
 
 const returnToLogIn = () => {
