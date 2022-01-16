@@ -22,6 +22,7 @@ const filterByRoomTypeButton = document.querySelector('#filterByRoomTypeButton')
 const tryAgainButton = document.querySelector('#tryAgainButton');
 const logInButton = document.querySelector('#logInButton');
 const homeButton = document.querySelector('#homeButton');
+const navHomeButton = document.querySelector('#navHomeButton');
 const selectedDate = document.querySelector('#selectedDate');
 const userName = document.querySelector('#userName');
 const password = document.querySelector('#password');
@@ -145,14 +146,13 @@ export const determineFetchAPIResponse = (response, date, roomNumber) => {
     Promise.resolve(response)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data)
         customer = new Customer(data, allBookings, allRooms)
         displaySpecificCustomer(customer)
       })
       .catch(err => displayGetErrorMessage())
   } else {
     domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, logInView, dashboardNav, tryAgainButton])
-    domUpdates.removeHidden([errorMessageView, homeButton])
+    domUpdates.removeHidden([errorMessageView, logInNav])
     Promise.resolve(response)
       .then(resp => resp.json())
       .then(data => domUpdates.showErrorMessage(data.message))
@@ -160,9 +160,9 @@ export const determineFetchAPIResponse = (response, date, roomNumber) => {
 }
 
 const displayGetErrorMessage = () => {
-  let message = `Something went wrong while obtaining data!`;
+  let message = `Something went wrong while obtaining data! Try again later...`;
   domUpdates.showErrorMessage(message);
-  domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, tryAgainButton]);
+  domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, tryAgainButton, logInView, navHomeButton]);
   domUpdates.removeHidden([errorMessageView]);
 }
 
@@ -174,6 +174,7 @@ const logUserIn = () => {
 
 const returnToLogIn = () => {
   event.preventDefault;
+  console.log('buttonWorking')
   domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, dashboardNav, dashboardView])
   domUpdates.removeHidden([logInView, logInNav])
 }
@@ -189,3 +190,4 @@ bookingCardSection.addEventListener('click', event => {
   determineButtonAction(event)});
 logInButton.addEventListener('click', logUserIn);
 homeButton.addEventListener('click', returnToLogIn);
+navHomeButton.addEventListener('click', returnToLogIn);
