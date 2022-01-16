@@ -123,7 +123,7 @@ const bookARoom = event => {
   addABooking(customer.id, date, roomNumber)
 }
 
-export const determineAPIResponse = (response, date, roomNumber) => {
+export const determinePostAPIResponse = (response, date, roomNumber) => {
   if (response.ok) {
     domUpdates.addHidden([filterView, errorMessageView, dashboardView, bookingPageView])
     domUpdates.removeHidden([successView])
@@ -138,25 +138,38 @@ export const determineAPIResponse = (response, date, roomNumber) => {
   }
 }
 
+export const determineFetchAPIResponse = (response, date, roomNumber) => {
+  if (response.ok) {
+    domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, logInNav])
+    domUpdates.removeHidden([dashboardView, dashboardNav])
+    Promise.resolve(response)
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data)
+        customer = new Customer(data, allBookings, allRooms)
+        displaySpecificCustomer(customer)
+      })
+      .catch(err => displayGetErrorMessage())
+  } else {
+    domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, logInView, dashboardNav, tryAgainButton])
+    domUpdates.removeHidden([errorMessageView, homeButton])
+    Promise.resolve(response)
+      .then(resp => resp.json())
+      .then(data => domUpdates.showErrorMessage(data.message))
+  }
+}
+
 const displayGetErrorMessage = () => {
   let message = `Something went wrong while obtaining data!`;
   domUpdates.showErrorMessage(message);
-  domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, tryAgainButton])
+  domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, tryAgainButton]);
   domUpdates.removeHidden([errorMessageView]);
 }
 
 const logUserIn = () => {
-  domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, logInNav])
-  domUpdates.removeHidden([dashboardView, dashboardNav])
   let userID = parseInt(userName.value.slice(8));
-  let userPassword = password.value
-  fetchSingleCustomer(userID)
-    .then(data => {
-      console.log(data)
-      customer = new Customer(data, allBookings, allRooms)
-      displaySpecificCustomer(customer)
-    })
-    .catch(err => displayGetErrorMessage())
+  let userPassword = password.value;
+  fetchSingleCustomer(userID);
 }
 
 const returnToLogIn = () => {
