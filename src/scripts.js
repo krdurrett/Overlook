@@ -21,6 +21,7 @@ const filterRoomButton = document.querySelector('#filterRoomButton');
 const filterByRoomTypeButton = document.querySelector('#filterByRoomTypeButton');
 const tryAgainButton = document.querySelector('#tryAgainButton');
 const logInButton = document.querySelector('#logInButton');
+const homeButton = document.querySelector('#homeButton');
 const selectedDate = document.querySelector('#selectedDate');
 const userName = document.querySelector('#userName');
 const password = document.querySelector('#password');
@@ -151,10 +152,17 @@ const logUserIn = () => {
   let userPassword = password.value
   fetchSingleCustomer(userID)
     .then(data => {
+      console.log(data)
       customer = new Customer(data, allBookings, allRooms)
       displaySpecificCustomer(customer)
     })
     .catch(err => displayGetErrorMessage())
+}
+
+const returnToLogIn = () => {
+  event.preventDefault;
+  domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, dashboardNav, dashboardView])
+  domUpdates.removeHidden([logInView, logInNav])
 }
 
 //Event Listeners
@@ -167,3 +175,4 @@ tryAgainButton.addEventListener('click', goBackToDashboard);
 bookingCardSection.addEventListener('click', event => {
   determineButtonAction(event)});
 logInButton.addEventListener('click', logUserIn);
+homeButton.addEventListener('click', returnToLogIn);
