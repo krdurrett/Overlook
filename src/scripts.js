@@ -1,7 +1,4 @@
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png';
 import Customer from './classes/Customer';
 import RoomTracker from './classes/RoomTracker';
 import domUpdates from './domUpdates';
@@ -49,10 +46,10 @@ const fetchAll = () => {
     .catch(err => displayGetErrorMessage())
 }
 
-const getRandomElement = array => {
-  var randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
-}
+// const getRandomElement = array => {
+//   var randomIndex = Math.floor(Math.random() * array.length);
+//   return array[randomIndex];
+// }
 
 const displaySpecificCustomer = (customer) => {
   customer.findMyBookings();
@@ -79,7 +76,7 @@ const displayAvailabilityByDate = () => {
 }
 
 const stateHandle = () => {
-  if(selectedDate.value === "") {
+  if (selectedDate.value === "") {
     bookRoomButton.disabled = true;
   } else {
     bookRoomButton.disabled = false;
@@ -120,7 +117,6 @@ const determineButtonAction = event => {
 }
 
 const bookARoom = event => {
-  let userID = customer.id
   let date = selectedDate.value.replace('-', '/').replace('-', '/')
   let roomNumber = parseInt(event.target.id)
   addABooking(customer.id, date, roomNumber)
@@ -141,7 +137,7 @@ export const determinePostAPIResponse = (response, date, roomNumber) => {
   }
 }
 
-export const determineFetchAPIResponse = (response, date, roomNumber) => {
+export const determineFetchAPIResponse = (response) => {
   if (response.ok) {
     domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, logInNav])
     domUpdates.removeHidden([dashboardView, dashboardNav])
@@ -193,7 +189,8 @@ filterRoomButton.addEventListener('click', displayFilterView);
 filterByRoomTypeButton.addEventListener('click', displayAvailabilityByRoomType);
 tryAgainButton.addEventListener('click', goBackToDashboard);
 bookingCardSection.addEventListener('click', event => {
-  determineButtonAction(event)});
+  determineButtonAction(event)
+});
 logInButton.addEventListener('click', logUserIn);
 homeButton.addEventListener('click', returnToLogIn);
 navHomeButton.addEventListener('click', returnToLogIn);
