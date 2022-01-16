@@ -5,6 +5,11 @@ export const fetchAllCustomers = () => {
       .then(response => response.json())
 }
 
+export const fetchSingleCustomer = (userID) => {
+  return fetch(`http://localhost:3001/api/v1/customers/${userID}`)
+    .then(response => response.json())
+}
+
 export const fetchAllRooms = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
     .then(response => response.json())

@@ -5,7 +5,7 @@ import './images/turing-logo.png';
 import Customer from './classes/Customer';
 import RoomTracker from './classes/RoomTracker';
 import domUpdates from './domUpdates';
-import { fetchAllCustomers, fetchAllRooms, fetchAllBookings, addABooking } from './apiCalls';
+import { fetchAllCustomers, fetchSingleCustomer, fetchAllRooms, fetchAllBookings, addABooking } from './apiCalls';
 
 //Query Selectors
 const dashboardView = document.querySelector('#dashboardView');
@@ -31,16 +31,17 @@ const errorMessage = document.querySelector('#errorMessage');
 //Global Variables
 let customer;
 let roomTracker;
+let allRooms;
+let allBookings;
 bookRoomButton.disabled = true;
 
 //Functions
 const fetchAll = () => {
   Promise.all([fetchAllCustomers(), fetchAllRooms(), fetchAllBookings()])
     .then(data => {
-      let randomCustomer = getRandomElement(data[0].customers);
-      customer = new Customer(randomCustomer, data[2].bookings, data[1].rooms);
+      allRooms = data[1].rooms
+      allBookings = data[2].bookings
       roomTracker = new RoomTracker(data[1].rooms, data[2].bookings);
-      displayRandomUser(customer);
     })
     .catch(err => displayGetErrorMessage())
 }
@@ -50,10 +51,10 @@ const getRandomElement = array => {
   return array[randomIndex];
 }
 
-const displayRandomUser = (customer) => {
+const displaySpecificCustomer = (customer) => {
   customer.findMyBookings();
   customer.calculateTotalCost();
-  domUpdates.showRandomUser(customer);
+  domUpdates.showSpecificUser(customer);
 }
 
 const displayAvailabilityByDate = () => {
@@ -74,7 +75,7 @@ const displayAvailabilityByDate = () => {
 }
 
 const stateHandle = () => {
-  if(document.querySelector("#selectedDate").value === "") {
+  if(selectedDate.value === "") {
     bookRoomButton.disabled = true;
   } else {
     bookRoomButton.disabled = false;
@@ -116,7 +117,7 @@ const determineButtonAction = event => {
 
 const bookARoom = event => {
   let userID = customer.id
-  let date = document.querySelector("#selectedDate").value.replace('-', '/').replace('-', '/')
+  let date = selectedDate.value.replace('-', '/').replace('-', '/')
   let roomNumber = parseInt(event.target.id)
   addABooking(customer.id, date, roomNumber)
 }
@@ -143,9 +144,17 @@ const displayGetErrorMessage = () => {
   domUpdates.removeHidden([errorMessageView]);
 }
 
-const displayUserDashboard = () => {
+const logUserIn = () => {
   domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, logInNav])
   domUpdates.removeHidden([dashboardView, dashboardNav])
+  let userID = parseInt(userName.value.slice(8));
+  let userPassword = password.value
+  fetchSingleCustomer(userID)
+    .then(data => {
+      customer = new Customer(data, allBookings, allRooms)
+      displaySpecificCustomer(customer)
+    })
+    .catch(err => displayGetErrorMessage())
 }
 
 //Event Listeners
@@ -157,4 +166,4 @@ filterByRoomTypeButton.addEventListener('click', displayAvailabilityByRoomType);
 tryAgainButton.addEventListener('click', goBackToDashboard);
 bookingCardSection.addEventListener('click', event => {
   determineButtonAction(event)});
-logInButton.addEventListener('click', displayUserDashboard);
+logInButton.addEventListener('click', logUserIn);
