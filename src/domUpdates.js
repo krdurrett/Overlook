@@ -13,7 +13,7 @@ let domUpdates = {
       item.classList.remove("hidden");
     })
   },
-  showRandomUser(customer) {
+  showSpecificUser(customer) {
     let bookingsList = customer.myBookings.reduce((acc, booking) => {
       acc += `<li class="booking">Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}</li>`
       return acc
