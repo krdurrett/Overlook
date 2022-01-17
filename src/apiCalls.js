@@ -10,11 +10,6 @@ export const fetchSingleCustomer = (userID) => {
     .then(response => determineFetchAPIResponse(response))
 }
 
-export const fetchCustomerForManager = (userID) => {
-  return fetch(`http://localhost:3001/api/v1/customers/${userID}`)
-    .then(response => determineFetchResponseForManager(response))
-}
-
 export const fetchAllRooms = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
     .then(response => response.json())
@@ -34,4 +29,15 @@ export const addABooking = (userID, date, roomNumber) => {
     }
   })
     .then(response => determinePostAPIResponse(response, date, roomNumber))
+}
+
+export const addBookingByManager = (userID, date, roomNumber) => {
+  return fetch('http://localhost:3001/api/v1/bookings', {
+    method: 'POST',
+    body: JSON.stringify({ "userID": userID, "date": date, "roomNumber": roomNumber }),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
+    .then(response => determineManagerPostAPIResponse(response, date, roomNumber))
 }

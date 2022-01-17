@@ -3,7 +3,7 @@ import Customer from './classes/Customer';
 import RoomTracker from './classes/RoomTracker';
 import Manager from './classes/Manager';
 import domUpdates from './domUpdates';
-import { fetchAllCustomers, fetchSingleCustomer, fetchAllRooms, fetchAllBookings, addABooking } from './apiCalls';
+import { fetchAllCustomers, fetchSingleCustomer, fetchAllRooms, fetchAllBookings, addABooking, addBookingByManager } from './apiCalls';
 
 //Query Selectors
 const dashboardView = document.querySelector('#dashboardView');
@@ -38,6 +38,11 @@ const errorMessage = document.querySelector('#errorMessage');
 const summarySection = document.querySelector('#summarySection');
 const customerName = document.querySelector('#customerName');
 const findAnotherCustomerButton = document.querySelector('#findAnotherCustomerButton');
+const bookRoomManagerButton = document.querySelector('#bookRoomManagerButton');
+const deleteRoom = document.querySelector('#deleteRoom');
+const customerNameForManagerBooking = document.querySelector('#customerNameForManagerBooking');
+const managerSelectedDate = document.querySelector('#date');
+const roomNumber = document.querySelector('#roomNumber');
 
 //Global Variables
 let customer;
@@ -236,9 +241,17 @@ const displayCustomerForManager = () => {
 }
 
 const displayFindCustomerForm = () => {
-  console.log("button working");
   domUpdates.addHidden([customerInformationSection]);
   domUpdates.removeHidden([foundCustomerSection]);
+}
+
+const bookRoomForCustomer = () => {
+  manager.findCustomer(customerNameForManagerBooking.value);
+  let customerID = manager.customer.id
+  let selectedDate = managerSelectedDate.value.replace('-', '/').replace('-', '/');
+  let selectedRoomNumber = roomNumber.value;
+  console.log(selectedRoomNumber)
+  // addBookingByManager()
 }
 
 //Event Listeners
@@ -257,3 +270,4 @@ navHomeButton.addEventListener('click', returnToLogIn);
 managerNavHomeButton.addEventListener('click', returnToLogIn);
 findCustomerButton.addEventListener('click', displayCustomerForManager);
 findAnotherCustomerButton.addEventListener('click', displayFindCustomerForm);
+bookRoomManagerButton.addEventListener('click', bookRoomForCustomer);
