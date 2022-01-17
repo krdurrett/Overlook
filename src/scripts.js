@@ -37,6 +37,7 @@ const bookingPageHeading = document.querySelector('#bookingPageHeading');
 const errorMessage = document.querySelector('#errorMessage');
 const summarySection = document.querySelector('#summarySection');
 const customerName = document.querySelector('#customerName');
+const findAnotherCustomerButton = document.querySelector('#findAnotherCustomerButton');
 
 //Global Variables
 let customer;
@@ -201,7 +202,7 @@ const logUserIn = () => {
     fetchSingleCustomer(userID);
   } else if (userPassword === 'overlook2021' && userName.value === 'manager') {
     domUpdates.addHidden([logInView, logInNav, filterView, successView, dashboardView, bookingPageView, tryAgainButton]);
-    domUpdates.removeHidden([managerNav, managerDashboard]);
+    domUpdates.removeHidden([managerNav, managerDashboard, foundCustomerSection]);
     let todaysDate = getTodaysDate();
     const reformattedDate = getReformattedDate();
     manager.getAvailableRoomsByDate(todaysDate);
@@ -234,6 +235,12 @@ const displayCustomerForManager = () => {
   }
 }
 
+const displayFindCustomerForm = () => {
+  console.log("button working");
+  domUpdates.addHidden([customerInformationSection]);
+  domUpdates.removeHidden([foundCustomerSection]);
+}
+
 //Event Listeners
 window.addEventListener('load', fetchAll);
 bookRoomButton.addEventListener('click', displayAvailabilityByDate);
@@ -249,3 +256,4 @@ homeButton.addEventListener('click', returnToLogIn);
 navHomeButton.addEventListener('click', returnToLogIn);
 managerNavHomeButton.addEventListener('click', returnToLogIn);
 findCustomerButton.addEventListener('click', displayCustomerForManager);
+findAnotherCustomerButton.addEventListener('click', displayFindCustomerForm);

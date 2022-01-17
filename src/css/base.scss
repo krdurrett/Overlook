@@ -104,6 +104,7 @@ main {
   @include heightAndWidth(65%, none);
   @include flexbox(column, center, center);
   @include font(none, 20px, #36395A);
+  padding: 25px 0px 10px 25px;
   overflow-y: auto;
   background-color: $white-background;
 }
@@ -274,6 +275,8 @@ main {
 }
 
 .total-cost-div {
+  @include flexbox(none, space-around, center);
+
   p {
     margin: 0;
   }
@@ -288,6 +291,7 @@ main {
   @include heightAndWidth(100%, 90%);
   @include flexbox(column, center, center);
   @include font(none, 20px, #36395A);
+  padding: 10px;
   margin-left: 10px;
   overflow-y: auto;
 }

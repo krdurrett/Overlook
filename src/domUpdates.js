@@ -110,6 +110,7 @@ let domUpdates = {
       acc += `<li class="booking">Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}</li>`
       return acc
     }, ``);
+    customerInformationSection.innerHTML = '';
     customerInformationSection.innerHTML = `
       <div class="customer-name">
         <p>Customer: ${customer.name}</p>
@@ -121,6 +122,7 @@ let domUpdates = {
       </div>
       <div class="total-cost-div">
         <p>Total Cost $${customer.totalCost}</p>
+        <button id="findAnotherCustomerButton">Find Another Customer</button>
       </div>
     `
   }
