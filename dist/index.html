@@ -11,7 +11,7 @@
 </head>
 <body>
   <main>
-    <nav class="log-in-nav hidden" id="logInNav">
+    <nav class="log-in-nav" id="logInNav">
       <div>
         <button id="navHomeButton">HOME</button>
       </div>
@@ -21,7 +21,7 @@
       <div>
       </div>
     </nav>
-    <nav class="manager-nav" id="managerNav">
+    <nav class="manager-nav hidden" id="managerNav">
       <div>
         <button id="managerNavHomeButton">HOME</button>
       </div>
@@ -64,13 +64,11 @@
         </div>
       </div>
     </section>
-    <section class="manager-dashboard" id="managerDashboard">
+    <section class="manager-dashboard hidden" id="managerDashboard">
       <div class="heading">
         <p>Welcome Manager</p>
       </div>
       <div class="daily-summary">
-        <!-- <div class="daily-summary-title">
-        </div> -->
         <div class="summary-section">
           <p>Daily Summary for 01/27/2022</p>
           <ul class="summary-list" tabindex=0>
@@ -80,7 +78,7 @@
           </ul>
         </div>
         <div class="user-management">
-          <div class="found-customer-section hidden" id="foundCustomerSection">
+          <div class="found-customer-section" id="foundCustomerSection">
             <p>Look up Customer Info</p>
             <form class="find-customer-form" id="findCustomerForm">
               <label for="customerName">Customer Name</label>
@@ -91,7 +89,7 @@
               <button>Find Customer</button>
             </div>
           </div>
-          <div class="customer-information-section">
+          <div class="customer-information-section hidden" id="customerInformationSection">
             <div class="customer-name">
               <p>Customer: Billy Bob</p>
             </div>
@@ -126,7 +124,7 @@
         </div>
       </div>
     </section>
-    <section class="log-in-view hidden" id="logInView">
+    <section class="log-in-view" id="logInView">
       <section class="heading">
         <p>Welcome to the Overlook, Please log in:</p>
       </section>
