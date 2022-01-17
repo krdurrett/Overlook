@@ -94,6 +94,16 @@ let domUpdates = {
   },
   showErrorMessage(message) {
     errorMessage.innerText = `${message}`
+  },
+  showManagerSummary(todaysDate, availableRooms, todaysRevenue, percentageBooked) {
+    summarySection.innerHTML = `
+    <p>Daily Summary for ${todaysDate}</p>
+    <ul class="summary-list" tabindex=0>
+      <li>There are ${availableRooms} rooms available.</li>
+      <li>${percentageBooked}% of total rooms are booked.</li>
+      <li>Total revenue: $${todaysRevenue}</li>
+    </ul>
+    `
   }
 }
 

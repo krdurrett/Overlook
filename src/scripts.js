@@ -33,6 +33,7 @@ const password = document.querySelector('#password');
 const bookingCardSection = document.querySelector('#bookingCardSection');
 const bookingPageHeading = document.querySelector('#bookingPageHeading');
 const errorMessage = document.querySelector('#errorMessage');
+const summarySection = document.querySelector('#summarySection');
 
 //Global Variables
 let customer;
@@ -172,6 +173,24 @@ const displayGetErrorMessage = () => {
   domUpdates.removeHidden([errorMessageView]);
 }
 
+const getTodaysDate = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const day = date.getDate();
+  const month = `0${date.getMonth() + 1}`;
+  const todaysDate = `${year}/${month}/${day}`;
+  return todaysDate;
+}
+
+const getReformattedDate = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const day = date.getDate();
+  const month = `0${date.getMonth() + 1}`;
+  const reformattedDate = `${month}/${day}/${year}`;
+  return reformattedDate;
+}
+
 const logUserIn = () => {
   let userID = parseInt(userName.value.slice(8));
   let userPassword = password.value;
@@ -180,6 +199,12 @@ const logUserIn = () => {
   } else if (userPassword === 'overlook2021' && userName.value === 'manager') {
     domUpdates.addHidden([logInView, logInNav, filterView, successView, dashboardView, bookingPageView, tryAgainButton]);
     domUpdates.removeHidden([managerNav, managerDashboard]);
+    let todaysDate = getTodaysDate();
+    const reformattedDate = getReformattedDate();
+    manager.getAvailableRoomsByDate(todaysDate);
+    manager.getTodaysRevenue(todaysDate);
+    manager.getPercentageBooked(todaysDate);
+    domUpdates.showManagerSummary(reformattedDate, manager.availableRoomsByDate.length, manager.todaysRevenue, manager.percentageBooked);
   } else {
     domUpdates.removeHidden([passwordError]);
   }
