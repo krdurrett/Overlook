@@ -18,6 +18,17 @@ main {
   @include heightAndWidth(100vh, none);
 }
 
+.manager-nav {
+  @include heightAndWidth(10%, none);
+  @include flexbox(none, space-between, center);
+  margin: 15px;
+
+  p {
+    @include font(bold, 45px, #DEDEDC);
+    margin-right: 100px;
+  }
+}
+
 .log-in-nav {
   @include heightAndWidth(10%, none);
   @include flexbox(none, space-between, center);
@@ -53,7 +64,8 @@ main {
 .booking-page-view,
 .error-message-view,
 .filter-view,
-.success-view {
+.success-view,
+.manager-dashboard {
   @include heightAndWidth(80%, none);
   @include flexbox(column, none, center);
   @include font(none, none, #DEDEDC);
@@ -181,6 +193,35 @@ main {
 
 .booking-details {
   @include font(bold, 30px, none);
+}
+
+.daily-summary {
+  @include flexbox(none, center, none);
+  @include font(bold, 30px, none);
+  // background-color: $white-background;
+  border: 2px solid red;
+}
+
+.user-management {
+  border: 2px solid blue;
+}
+
+.adjust-customer-bookings {
+  @include flexbox(column, center, none);
+  background-color: $white-background;
+}
+
+.adjust-bookings-form {
+  @include flexbox(column, center, none);
+}
+
+.user-management {
+  @include flexbox(column, center, none);
+  background-color: $white-background;
+}
+
+.find-customer-form {
+  @include flexbox(column, center, none);
 }
 
 input {
