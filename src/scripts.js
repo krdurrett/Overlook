@@ -28,7 +28,6 @@ const navHomeButton = document.querySelector('#navHomeButton');
 const managerNavHomeButton = document.querySelector('#managerNavHomeButton');
 const findCustomerButton = document.querySelector('#findCustomerButton');
 const bookRoomManagerButton = document.querySelector('#bookRoomManagerButton');
-const deleteRoom = document.querySelector('#deleteRoom');
 const passwordError = document.querySelector('#passwordError');
 const customerNameError = document.querySelector('#customerNameError');
 const selectedDate = document.querySelector('#selectedDate');
@@ -43,6 +42,7 @@ const findAnotherCustomerButton = document.querySelector('#findAnotherCustomerBu
 const customerNameForManagerBooking = document.querySelector('#customerNameForManagerBooking');
 const managerSelectedDate = document.querySelector('#date');
 const roomNumber = document.querySelector('#roomNumber');
+const bookingListManager = document.querySelector('#bookingsListManager');
 
 //Global Variables
 let customer;
@@ -274,6 +274,10 @@ const bookRoomForCustomer = () => {
   addBookingByManager(customerID, selectedDate, selectedRoomNumber);
 }
 
+const deleteRoomForCustomer = event => {
+  console.log(customer);
+}
+
 //Event Listeners
 window.addEventListener('load', fetchAll);
 bookRoomButton.addEventListener('click', displayAvailabilityByDate);
@@ -291,3 +295,6 @@ managerNavHomeButton.addEventListener('click', returnToLogIn);
 findCustomerButton.addEventListener('click', displayCustomerForManager);
 findAnotherCustomerButton.addEventListener('click', displayFindCustomerForm);
 bookRoomManagerButton.addEventListener('click', bookRoomForCustomer);
+customerInformationSection.addEventListener('click', event => {
+  deleteRoomForCustomer(event)
+})
