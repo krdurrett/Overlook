@@ -105,10 +105,16 @@ let domUpdates = {
     </ul>
     `
   },
-  showCustomerInformationSection(customer) {
+  showCustomerInformationSection(customer, currentDate) {
     let bookingsList = customer.myBookings.reduce((acc, booking) => {
-      acc += `<li class="booking">Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}</li>`
-      return acc
+      let currentDM = currentDate.slice(0, 5).replace('/','')
+      let bookingDM = booking.bookingDate.slice(0, 5).replace('/','')
+      if (bookingDM >= currentDM) {
+        acc += `<li class="manager-booking">Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}<button class="delete-room" id="deleteRoom">❌</button></li>`
+        return acc
+      } else if (bookingDM < currentDM) {
+        acc += `<li class="manager-booking">Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}</li>`
+      }
     }, ``);
     customerInformationSection.innerHTML = '';
     customerInformationSection.innerHTML = `
@@ -122,7 +128,7 @@ let domUpdates = {
       </div>
       <div class="total-cost-div">
         <p>Total Cost $${customer.totalCost}</p>
-        <button id="findAnotherCustomerButton">Find Another Customer</button>
+        <button class="find-another-customer-button" id="findAnotherCustomerButton">Find Another Customer</button>
       </div>
     `
   }

@@ -41,3 +41,8 @@ export const addBookingByManager = (userID, date, roomNumber) => {
   })
     .then(response => determineManagerPostAPIResponse(response, date, roomNumber))
 }
+
+export const deleteBooking = (bookingNumber) => {
+  return fetch(`http://localhost:3001/api/v1/bookings/${bookingNumber}`)
+    .then(response => console.log(response))
+}

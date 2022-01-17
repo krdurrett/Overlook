@@ -13,7 +13,7 @@
   <main>
     <nav class="log-in-nav" id="logInNav">
       <div>
-        <button id="navHomeButton">HOME</button>
+        <button class="nav-home-button" id="navHomeButton">HOME</button>
       </div>
       <div>
         <p>THE OVERLOOK</p>
@@ -23,7 +23,7 @@
     </nav>
     <nav class="manager-nav hidden" id="managerNav">
       <div>
-        <button id="managerNavHomeButton">HOME</button>
+        <button class="manager-nav-home-button" id="managerNavHomeButton">HOME</button>
       </div>
       <div>
         <p>THE OVERLOOK</p>
@@ -33,7 +33,7 @@
     </nav>
     <nav class="dashboard-nav hidden" id="dashboardNav">
       <div>
-        <button id="homeButton">HOME</button>
+        <button class"home-button" id="homeButton">HOME</button>
       </div>
       <div class="nav-title">
         <p>THE OVERLOOK</p>
@@ -41,7 +41,7 @@
       <form>
         <label class="date-selector" for="selectedDate">Select a date:</label>
         <input class="date-input" type="date" id="selectedDate" name="start-date" value="" min="2022-01-01" max="2022-12-31" required>
-        <button id="bookRoomButton">BOOK A ROOM</button>
+        <button class="book-room-button"id="bookRoomButton">BOOK A ROOM</button>
       </form>
     </nav>
     <section class="dashboard-view hidden" id="dashboardView">
@@ -89,8 +89,8 @@
             <div class="customer-name-error hidden" id="customerNameError">
               <p>Customer Not Found, Please retry</p>
             </div>
-            <div class="find-customer-button">
-              <button id="findCustomerButton">Find Customer</button>
+            <div class="find-customer-button-section">
+              <button class="find-customer-button" id="findCustomerButton">Find Customer</button>
             </div>
           </div>
           <div class="customer-information-section hidden" id="customerInformationSection">
@@ -106,7 +106,7 @@
             </div>
             <div class="total-cost-div">
               <p>Total Cost $$$$$</p>
-              <button id="findAnotherCustomerButton">Find Another Customer</button>
+              <button class="find-another-customer-button" id="findAnotherCustomerButton">Find Another Customer</button>
             </div>
           </div>
         </div>
@@ -123,8 +123,8 @@
             <input type="number" name="roomNumber" require="required" id="roomNumber">
           </form>
           <div class="book-or-delete-buttons">
-            <button id="bookRoomManagerButton">Book Room</button>
-            <button id="deleteRoom">Delete Booking</button>
+            <button class="book-room-manager-button" id="bookRoomManagerButton">Book Room</button>
+            <!-- <button id="deleteRoom">Delete Booking</button> -->
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@
         </form>
         <p class="password-error hidden" id="passwordError">Password incorrect, Please retry</p>
         <div>
-          <button id="logInButton">LOG-IN</button>
+          <button class="log-in-button" id="logInButton">LOG-IN</button>
         </div>
       </div>
     </section>
@@ -154,7 +154,7 @@
         <!-- booking cards go here -->
       </section>
       <section class="filter-button-section">
-        <button id="filterRoomButton">Filter Rooms</button>
+        <button class="filter-room-button" id="filterRoomButton">Filter Rooms</button>
       </section>
     </section>
     <section class="filter-view hidden" id="filterView">
@@ -182,15 +182,15 @@
         </form>
       </section>
       <section class="filter-rooms-section">
-        <button id="filterByRoomTypeButton">Filter</button>
+        <button class="filter-by-room-type-button" id="filterByRoomTypeButton">Filter</button>
       </section>
     </section>
     <section class="error-message-view hidden" id="errorMessageView">
       <section class="heading">
         <p id="errorMessage">We sincerely apologize, but no rooms match your search criteria!</p>
       </section>
-      <section class="try-again-button">
-        <button id="tryAgainButton">Try Again!</button>
+      <section class="try-again-button-section">
+        <button class="try-again-button" id="tryAgainButton">Try Again!</button>
       </section>
     </section>
     <section class="success-view hidden" id="successView">

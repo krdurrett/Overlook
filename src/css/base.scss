@@ -187,7 +187,7 @@ main {
   }
 }
 
-.try-again-button {
+.try-again-button-section {
   @include flexbox(none, center, none);
   margin-top: 100px;
 }
@@ -252,7 +252,7 @@ main {
   @include flexbox(column, center, center);
 }
 
-.find-customer-button {
+.find-customer-button-section {
   margin-top: 15px;
   @include flexbox(none, center, none);
 }
@@ -290,17 +290,36 @@ main {
 .booking-list-manager {
   @include heightAndWidth(100%, 90%);
   @include flexbox(column, center, center);
-  @include font(none, 20px, #36395A);
+  @include font(none, 15px, #36395A);
   padding: 10px;
   margin-left: 10px;
   overflow-y: auto;
+}
+
+.manager-booking {
+    padding: 2px 10px 2px 10px;
+}
+
+.delete-room {
+  color: #36395A;
+  background-color: #DEDEDC;
+  font-size: 8px;
 }
 
 input {
   @include heightAndWidth(25px, none);
 }
 
-button {
+.book-room-button,
+.filter-room-button,
+.filter-by-room-type-button,
+.try-again-button,
+.log-in-button,
+.home-button,
+.nav-home-button,
+.manager-nav-home-button,
+.find-customer-button,
+.book-room-manager-button {
   align-items: center;
   appearance: none;
   background-color: #DEDEDC;
@@ -331,16 +350,43 @@ button {
   font-size: 18px;
 }
 
-button:focus {
+.book-room-button:focus,
+.filter-room-button:focus,
+.filter-by-room-type-button:focus,
+.try-again-button:focus,
+.log-in-button:focus,
+.home-button:focus,
+.nav-home-button:focus,
+.manager-nav-home-button:focus,
+.find-customer-button:focus,
+.book-room-manager-button:focus {
   box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
 
-button:hover {
+.book-room-button:hover,
+.filter-room-button:hover,
+.filter-by-room-type-button:hover,
+.try-again-button:hover,
+.log-in-button:hover,
+.home-button:hover,
+.nav-home-button:hover,
+.manager-nav-home-button:hover,
+.find-customer-button:hover,
+.book-room-manager-button:hover {
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
-button:active {
+.book-room-button:active,
+.filter-room-button:active,
+.filter-by-room-type-button:active,
+.try-again-button:active,
+.log-in-button:active,
+.home-button:active,
+.nav-home-button:active,
+.manager-nav-home-button:active,
+.find-customer-button:active,
+.book-room-manager-button:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }

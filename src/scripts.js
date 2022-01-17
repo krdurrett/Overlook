@@ -3,7 +3,7 @@ import Customer from './classes/Customer';
 import RoomTracker from './classes/RoomTracker';
 import Manager from './classes/Manager';
 import domUpdates from './domUpdates';
-import { fetchAllCustomers, fetchSingleCustomer, fetchAllRooms, fetchAllBookings, addABooking, addBookingByManager } from './apiCalls';
+import { fetchAllCustomers, fetchSingleCustomer, fetchAllRooms, fetchAllBookings, addABooking, addBookingByManager, deleteBooking } from './apiCalls';
 
 //Query Selectors
 const dashboardView = document.querySelector('#dashboardView');
@@ -27,6 +27,8 @@ const homeButton = document.querySelector('#homeButton');
 const navHomeButton = document.querySelector('#navHomeButton');
 const managerNavHomeButton = document.querySelector('#managerNavHomeButton');
 const findCustomerButton = document.querySelector('#findCustomerButton');
+const bookRoomManagerButton = document.querySelector('#bookRoomManagerButton');
+const deleteRoom = document.querySelector('#deleteRoom');
 const passwordError = document.querySelector('#passwordError');
 const customerNameError = document.querySelector('#customerNameError');
 const selectedDate = document.querySelector('#selectedDate');
@@ -38,8 +40,6 @@ const errorMessage = document.querySelector('#errorMessage');
 const summarySection = document.querySelector('#summarySection');
 const customerName = document.querySelector('#customerName');
 const findAnotherCustomerButton = document.querySelector('#findAnotherCustomerButton');
-const bookRoomManagerButton = document.querySelector('#bookRoomManagerButton');
-const deleteRoom = document.querySelector('#deleteRoom');
 const customerNameForManagerBooking = document.querySelector('#customerNameForManagerBooking');
 const managerSelectedDate = document.querySelector('#date');
 const roomNumber = document.querySelector('#roomNumber');
@@ -177,7 +177,7 @@ export const determineManagerPostAPIResponse = (response, date, roomNumber) => {
 
 export const determineFetchAPIResponse = (response) => {
   if (response.ok) {
-    domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, logInNav])
+    domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, logInNav, managerNav])
     domUpdates.removeHidden([dashboardView, dashboardNav])
     Promise.resolve(response)
       .then(resp => resp.json())
@@ -227,7 +227,7 @@ const logUserIn = () => {
     fetchSingleCustomer(userID);
   } else if (userPassword === 'overlook2021' && userName.value === 'manager') {
     domUpdates.addHidden([logInView, logInNav, filterView, successView, dashboardView, bookingPageView, tryAgainButton]);
-    domUpdates.removeHidden([managerNav, managerDashboard, foundCustomerSection]);
+    domUpdates.removeHidden([managerNav, managerDashboard]);
     let todaysDate = getTodaysDate();
     const reformattedDate = getReformattedDate();
     manager.getAvailableRoomsByDate(todaysDate);
@@ -251,12 +251,13 @@ const displayCustomerForManager = () => {
   if (foundCustomer === undefined) {
     domUpdates.removeHidden([customerNameError])
   } else {
+    let currentDate = getReformattedDate();
     customer = new Customer(foundCustomer, allBookings, allRooms);
     customer.findMyBookings();
     customer.calculateTotalCost();
     domUpdates.addHidden([foundCustomerSection, customerNameError]);
     domUpdates.removeHidden([customerInformationSection]);
-    domUpdates.showCustomerInformationSection(customer);
+    domUpdates.showCustomerInformationSection(customer, currentDate);
   }
 }
 
