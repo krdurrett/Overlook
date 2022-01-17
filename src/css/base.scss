@@ -196,19 +196,25 @@ main {
 }
 
 .daily-summary {
-  @include flexbox(none, space-between, none);
+  @include flexbox(none, center, none);
   @include font(bold, 30px, none);
   @include heightAndWidth(50%, 60%);
   margin-bottom: 10px;
 }
 
 .summary-section {
-  @include font(bold, 30px, black);
+  @include heightAndWidth(none, 40%);
+  @include font(bold, 30px, #36395A);
   background-color: $white-background;
+  margin-right: 20px;
 }
 
 .user-management {
-  padding: 20px;
+  @include flexbox(column, center, center);
+  @include heightAndWidth(none, 45%);
+  @include font(bold, 20px, none);
+  padding: 0 20px 0 20px;
+  margin-left: 20px;
 }
 
 .adjust-customer-bookings {
@@ -231,6 +237,7 @@ main {
 
 .user-management {
   @include flexbox(column, center, none);
+  @include heightAndWidth(none, 40%);
   background-color: $white-background;
 }
 
@@ -248,6 +255,25 @@ main {
   @include heightAndWidth(none, 100%);
   @include flexbox(none, space-around, none);
   margin-top: 15px;
+}
+
+.customer-information-section {
+  @include heightAndWidth(100%, 100%);
+  @include flexbox(column, center, center);
+  border: 2px solid blue;
+}
+
+.booking-list-section-manger {
+  @include heightAndWidth(100%, 100%);
+  border: 2px solid green;
+}
+
+.booking-list-manager {
+  @include heightAndWidth(100%, 75%);
+  @include flexbox(column, center, center);
+  @include font(none, 20px, #36395A);
+  border: 2px solid red;
+  overflow-y: auto;
 }
 
 input {
