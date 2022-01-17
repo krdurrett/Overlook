@@ -10,6 +10,11 @@ export const fetchSingleCustomer = (userID) => {
     .then(response => determineFetchAPIResponse(response))
 }
 
+export const fetchCustomerForManager = (userID) => {
+  return fetch(`http://localhost:3001/api/v1/customers/${userID}`)
+    .then(response => determineFetchResponseForManager(response))
+}
+
 export const fetchAllRooms = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
     .then(response => response.json())

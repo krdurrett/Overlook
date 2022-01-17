@@ -104,6 +104,25 @@ let domUpdates = {
       <li>Total revenue: $${todaysRevenue}</li>
     </ul>
     `
+  },
+  showCustomerInformationSection(customer) {
+    let bookingsList = customer.myBookings.reduce((acc, booking) => {
+      acc += `<li class="booking">Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}</li>`
+      return acc
+    }, ``);
+    customerInformationSection.innerHTML = `
+      <div class="customer-name">
+        <p>Customer: ${customer.name}</p>
+      </div>
+      <div class="booking-list-section-manger">
+        <ul class="booking-list-manager" tabindex=0>
+        ${bookingsList}
+        </ul>
+      </div>
+      <div class="total-cost-div">
+        <p>Total Cost $${customer.totalCost}</p>
+      </div>
+    `
   }
 }
 

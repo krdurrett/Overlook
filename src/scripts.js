@@ -26,6 +26,7 @@ const logInButton = document.querySelector('#logInButton');
 const homeButton = document.querySelector('#homeButton');
 const navHomeButton = document.querySelector('#navHomeButton');
 const managerNavHomeButton = document.querySelector('#managerNavHomeButton');
+const findCustomerButton = document.querySelector('#findCustomerButton');
 const passwordError = document.querySelector('#passwordError');
 const selectedDate = document.querySelector('#selectedDate');
 const userName = document.querySelector('#userName');
@@ -34,6 +35,7 @@ const bookingCardSection = document.querySelector('#bookingCardSection');
 const bookingPageHeading = document.querySelector('#bookingPageHeading');
 const errorMessage = document.querySelector('#errorMessage');
 const summarySection = document.querySelector('#summarySection');
+const customerName = document.querySelector('#customerName');
 
 //Global Variables
 let customer;
@@ -212,9 +214,19 @@ const logUserIn = () => {
 
 const returnToLogIn = () => {
   event.preventDefault;
-  console.log('buttonWorking')
   domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, dashboardNav, dashboardView, managerNav, managerDashboard])
   domUpdates.removeHidden([logInView, logInNav])
+}
+
+const displayCustomerForManager = () => {
+  manager.findCustomer(customerName.value);
+  let foundCustomer = manager.customer;
+  customer = new Customer(foundCustomer, allBookings, allRooms);
+  customer.findMyBookings();
+  customer.calculateTotalCost();
+  domUpdates.addHidden([foundCustomerSection]);
+  domUpdates.removeHidden([customerInformationSection]);
+  domUpdates.showCustomerInformationSection(customer);
 }
 
 //Event Listeners
@@ -231,3 +243,4 @@ logInButton.addEventListener('click', logUserIn);
 homeButton.addEventListener('click', returnToLogIn);
 navHomeButton.addEventListener('click', returnToLogIn);
 managerNavHomeButton.addEventListener('click', returnToLogIn);
+findCustomerButton.addEventListener('click', displayCustomerForManager);

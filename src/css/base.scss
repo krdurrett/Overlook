@@ -198,7 +198,7 @@ main {
 .daily-summary {
   @include flexbox(none, center, none);
   @include font(bold, 30px, none);
-  @include heightAndWidth(50%, 60%);
+  @include heightAndWidth(40%, 60%);
   margin-bottom: 10px;
 }
 
@@ -206,6 +206,7 @@ main {
   @include heightAndWidth(none, 40%);
   @include font(bold, 30px, #36395A);
   background-color: $white-background;
+  padding: 20px;
   margin-right: 20px;
 }
 
@@ -260,19 +261,30 @@ main {
 .customer-information-section {
   @include heightAndWidth(100%, 100%);
   @include flexbox(column, center, center);
-  border: 2px solid blue;
+}
+
+.customer-name {
+  p {
+    margin: 0;
+  }
+}
+
+.total-cost-div {
+  p {
+    margin: 0;
+  }
 }
 
 .booking-list-section-manger {
-  @include heightAndWidth(100%, 100%);
-  border: 2px solid green;
+  @include heightAndWidth(60%, 100%);
+  margin-bottom: 40px;
 }
 
 .booking-list-manager {
-  @include heightAndWidth(100%, 75%);
+  @include heightAndWidth(100%, 90%);
   @include flexbox(column, center, center);
   @include font(none, 20px, #36395A);
-  border: 2px solid red;
+  margin-left: 10px;
   overflow-y: auto;
 }
 
