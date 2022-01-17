@@ -128,6 +128,11 @@ const goBackToDashboard = () => {
   domUpdates.removeHidden([dashboardView]);
 }
 
+const goBackToManagerDashboard = () => {
+  domUpdates.addHidden([errorMessageView, successView, bookingPageView, filterView, logInNav, dashboardNav]);
+  domUpdates.removeHidden([managerNav, managerDashboard]);
+}
+
 const determineButtonAction = event => {
   if (event.target.classList.contains('book-room-button')) {
     bookARoom(event);
@@ -148,6 +153,21 @@ export const determinePostAPIResponse = (response, date, roomNumber) => {
     window.setTimeout(goBackToDashboard, 3000);
   } else {
     domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, managerNav, managerDashboard])
+    domUpdates.removeHidden([errorMessageView])
+    Promise.resolve(response)
+      .then(resp => resp.json())
+      .then(data => domUpdates.showErrorMessage(data.message))
+  }
+}
+
+export const determineManagerPostAPIResponse = (response, date, roomNumber) => {
+  if (response.ok) {
+    domUpdates.addHidden([filterView, errorMessageView, dashboardView, bookingPageView, managerDashboard])
+    domUpdates.removeHidden([successView])
+    domUpdates.showSuccessMessage(date, roomNumber);
+    window.setTimeout(goBackToManagerDashboard, 3000);
+  } else {
+    domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, managerDashboard])
     domUpdates.removeHidden([errorMessageView])
     Promise.resolve(response)
       .then(resp => resp.json())
@@ -247,11 +267,10 @@ const displayFindCustomerForm = () => {
 
 const bookRoomForCustomer = () => {
   manager.findCustomer(customerNameForManagerBooking.value);
-  let customerID = manager.customer.id
+  let customerID = manager.customer.id;
   let selectedDate = managerSelectedDate.value.replace('-', '/').replace('-', '/');
-  let selectedRoomNumber = roomNumber.value;
-  console.log(selectedRoomNumber)
-  // addBookingByManager()
+  let selectedRoomNumber = parseInt(roomNumber.value);
+  addBookingByManager(customerID, selectedDate, selectedRoomNumber);
 }
 
 //Event Listeners

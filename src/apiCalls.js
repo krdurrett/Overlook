@@ -1,4 +1,4 @@
-import { determinePostAPIResponse, determineFetchAPIResponse } from './scripts';
+import { determinePostAPIResponse, determineFetchAPIResponse, determineManagerPostAPIResponse } from './scripts';
 
 export const fetchAllCustomers = () => {
   return fetch('http://localhost:3001/api/v1/customers')
