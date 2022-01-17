@@ -80,18 +80,18 @@
           </ul>
         </div>
         <div class="user-management">
-          <div id="findCustomerForm">
+          <div class="found-customer-section hidden" id="foundCustomerSection">
             <p>Look up Customer Info</p>
-            <form class="find-customer-form">
+            <form class="find-customer-form" id="findCustomerForm">
               <label for="customerName">Customer Name</label>
               <input type="text" name="customerName" require="required" id="customerName">
             </form>
             <p class="customer-name-error hidden" id="customerNameError">Customer Not Found, Please retry</p>
-            <div>
-              <button id="logInButton">Find Customer</button>
+            <div class="find-customer-button">
+              <button>Find Customer</button>
             </div>
           </div>
-          <div class="customer-information-section hidden">
+          <div class="customer-information-section">
             <div class="customer-name">
               <p>Customer: Billy Bob</p>
             </div>
@@ -109,8 +109,8 @@
         </div>
       </div>
       <div class="adjust-customer-bookings">
-        <div id="adjustBookingsForm">
-          <form class="adjust-bookings-form">
+        <div class="adjust-bookings-section">
+          <form class="adjust-bookings-form" id="adjustBookingsForm">
             <p>Adjust Customer Booking</p>
             <label for="customerName">Customer Name</label>
             <input type="text" name="customerName" require="required" id="customerNameForManagerBooking">
@@ -119,7 +119,7 @@
             <label for="roomNumber">Room Number</label>
             <input type="number" name="roomNumber" require="required" id="roomNumber">
           </form>
-          <div>
+          <div class="book-or-delete-buttons">
             <button id="bookRoomManagerButton">Book Room</button>
             <button id="deleteRoom">Delete Booking</button>
           </div>

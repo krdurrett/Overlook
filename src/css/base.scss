@@ -196,23 +196,37 @@ main {
 }
 
 .daily-summary {
-  @include flexbox(none, center, none);
+  @include flexbox(none, space-between, none);
   @include font(bold, 30px, none);
-  // background-color: $white-background;
-  border: 2px solid red;
+  @include heightAndWidth(50%, 60%);
+  margin-bottom: 10px;
 }
 
-.user-management {
-  border: 2px solid blue;
-}
-
-.adjust-customer-bookings {
-  @include flexbox(column, center, none);
+.summary-section {
+  @include font(bold, 30px, black);
   background-color: $white-background;
 }
 
+.user-management {
+  padding: 20px;
+}
+
+.adjust-customer-bookings {
+  @include flexbox(column, center, center);
+  @include heightAndWidth(50%, 20%);
+  @include font(bold, 20px, none);
+  margin-top: 10px;
+  background-color: $white-background;
+}
+
+.adjust-bookings-section {
+  @include flexbox(column, center, center);
+  @include heightAndWidth(50%, 100%);
+  margin: 10px;
+}
+
 .adjust-bookings-form {
-  @include flexbox(column, center, none);
+  @include flexbox(column, center, center);
 }
 
 .user-management {
@@ -221,7 +235,19 @@ main {
 }
 
 .find-customer-form {
-  @include flexbox(column, center, none);
+  @include heightAndWidth(none, 100%);
+  @include flexbox(column, center, center);
+}
+
+.find-customer-button {
+  margin-top: 15px;
+  @include flexbox(none, center, none);
+}
+
+.book-or-delete-buttons {
+  @include heightAndWidth(none, 100%);
+  @include flexbox(none, space-around, none);
+  margin-top: 15px;
 }
 
 input {
