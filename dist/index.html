@@ -79,12 +79,16 @@
         </div>
         <div class="user-management">
           <div class="found-customer-section" id="foundCustomerSection">
-            <p>Look up Customer Info</p>
+            <div class="found-customer-title">
+              <p>Look up Customer Info</p>
+            </div>
             <form class="find-customer-form" id="findCustomerForm">
               <label for="customerName">Customer Name</label>
               <input type="text" name="customerName" require="required" id="customerName">
             </form>
-            <p class="customer-name-error hidden" id="customerNameError">Customer Not Found, Please retry</p>
+            <div class="customer-name-error hidden" id="customerNameError">
+              <p>Customer Not Found, Please retry</p>
+            </div>
             <div class="find-customer-button">
               <button id="findCustomerButton">Find Customer</button>
             </div>

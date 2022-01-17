@@ -242,6 +242,10 @@ main {
   background-color: $white-background;
 }
 
+.found-customer-section {
+  @include flexbox(column, center, center);
+}
+
 .find-customer-form {
   @include heightAndWidth(none, 100%);
   @include flexbox(column, center, center);

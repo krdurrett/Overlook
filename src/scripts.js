@@ -28,6 +28,7 @@ const navHomeButton = document.querySelector('#navHomeButton');
 const managerNavHomeButton = document.querySelector('#managerNavHomeButton');
 const findCustomerButton = document.querySelector('#findCustomerButton');
 const passwordError = document.querySelector('#passwordError');
+const customerNameError = document.querySelector('#customerNameError');
 const selectedDate = document.querySelector('#selectedDate');
 const userName = document.querySelector('#userName');
 const password = document.querySelector('#password');
@@ -221,12 +222,16 @@ const returnToLogIn = () => {
 const displayCustomerForManager = () => {
   manager.findCustomer(customerName.value);
   let foundCustomer = manager.customer;
-  customer = new Customer(foundCustomer, allBookings, allRooms);
-  customer.findMyBookings();
-  customer.calculateTotalCost();
-  domUpdates.addHidden([foundCustomerSection]);
-  domUpdates.removeHidden([customerInformationSection]);
-  domUpdates.showCustomerInformationSection(customer);
+  if (foundCustomer === undefined) {
+    domUpdates.removeHidden([customerNameError])
+  } else {
+    customer = new Customer(foundCustomer, allBookings, allRooms);
+    customer.findMyBookings();
+    customer.calculateTotalCost();
+    domUpdates.addHidden([foundCustomerSection, customerNameError]);
+    domUpdates.removeHidden([customerInformationSection]);
+    domUpdates.showCustomerInformationSection(customer);
+  }
 }
 
 //Event Listeners
