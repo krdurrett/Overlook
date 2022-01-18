@@ -83,6 +83,7 @@ let domUpdates = {
     })
   },
   showSuccessMessage(date, roomNumber) {
+    successView.innerHTML = ``
     successView.innerHTML = `
     <section class="heading">
       <p>Your room has been booked!</p>
@@ -94,6 +95,54 @@ let domUpdates = {
   },
   showErrorMessage(message) {
     errorMessage.innerText = `${message}`
+  },
+  showManagerSummary(todaysDate, availableRooms, todaysRevenue, percentageBooked) {
+    summarySection.innerHTML = `
+    <p>Daily Summary for ${todaysDate}</p>
+    <ul class="summary-list" tabindex=0>
+      <li>There are ${availableRooms} rooms available.</li>
+      <li>${percentageBooked}% of total rooms are booked.</li>
+      <li>Total revenue: $${todaysRevenue}</li>
+    </ul>
+    `
+  },
+  showCustomerInformationSection(customer, currentDate) {
+    let bookingsList = customer.myBookings.reduce((acc, booking) => {
+      let currentDM = currentDate.slice(0, 5).replace('/','')
+      let bookingDM = booking.bookingDate.slice(0, 5).replace('/','')
+      if (bookingDM >= currentDM) {
+        acc += `<li class="manager-booking">Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}<button class="delete-room" id="${booking.bookingNumber}">❌</button></li>`
+        return acc
+      } else if (bookingDM < currentDM) {
+        acc += `<li class="manager-booking">Date: ${booking.bookingDate} Room #: ${booking.roomNumber} Cost: $${booking.cost}</li>`
+      }
+    }, ``);
+    customerInformationSection.innerHTML = '';
+    customerInformationSection.innerHTML = `
+      <div class="customer-name">
+        <p>Customer: ${customer.name}</p>
+      </div>
+      <div class="booking-list-section-manger">
+        <ul class="booking-list-manager" tabindex=0>
+        ${bookingsList}
+        </ul>
+      </div>
+      <div class="total-cost-div">
+        <p>Total Cost $${customer.totalCost}</p>
+        <button class="find-another-customer-button" id="findAnotherCustomerButton">Find Another Customer</button>
+      </div>
+    `
+  },
+  showDeleteMessage(bookingNumber) {
+    successView.innerHTML = ``
+    successView.innerHTML = `
+    <section class="heading">
+      <p>The booking has been deleted!</p>
+    </section>
+    <section class="booking-details">
+      <p>Booking #${bookingNumber}</p>
+    </section>
+    `
   }
 }
 

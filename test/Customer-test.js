@@ -38,6 +38,7 @@ describe('Customer', () => {
     customer.findMyBookings();
     expect(customer.myBookings).to.be.a('array');
     expect(customer.myBookings).to.deep.equal([{
+      "bookingNumber": "5fwrgu4i7k55hl6t8",
       "bookingDate": "02/05/2022",
       "cost": 172.09,
       "roomNumber": 12
