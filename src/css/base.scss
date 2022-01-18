@@ -319,6 +319,7 @@ input {
 .nav-home-button,
 .manager-nav-home-button,
 .find-customer-button,
+.find-another-customer-button,
 .book-room-manager-button {
   align-items: center;
   appearance: none;
@@ -359,6 +360,7 @@ input {
 .nav-home-button:focus,
 .manager-nav-home-button:focus,
 .find-customer-button:focus,
+.find-another-customer-button:focus,
 .book-room-manager-button:focus {
   box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
@@ -372,6 +374,7 @@ input {
 .nav-home-button:hover,
 .manager-nav-home-button:hover,
 .find-customer-button:hover,
+.find-another-customer-button:hover,
 .book-room-manager-button:hover {
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
   transform: translateY(-2px);
@@ -386,6 +389,7 @@ input {
 .nav-home-button:active,
 .manager-nav-home-button:active,
 .find-customer-button:active,
+.find-another-customer-button:active,
 .book-room-manager-button:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);

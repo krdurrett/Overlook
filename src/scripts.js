@@ -137,6 +137,12 @@ const determineButtonAction = event => {
   if (event.target.classList.contains('book-room-button')) {
     bookARoom(event);
   }
+  if (event.target.classList.contains('delete-room')) {
+    deleteRoomForCustomer(event);
+  }
+  if (event.target.classList.contains('find-another-customer-button')) {
+    displayFindCustomerForm();
+  }
 }
 
 const bookARoom = event => {
@@ -313,5 +319,5 @@ findCustomerButton.addEventListener('click', displayCustomerForManager);
 findAnotherCustomerButton.addEventListener('click', displayFindCustomerForm);
 bookRoomManagerButton.addEventListener('click', bookRoomForCustomer);
 customerInformationSection.addEventListener('click', event => {
-  deleteRoomForCustomer(event)
+  determineButtonAction(event)
 })
