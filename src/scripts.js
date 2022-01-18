@@ -15,6 +15,8 @@ const logInView = document.querySelector('#logInView');
 const managerDashboard = document.querySelector('#managerDashboard');
 const foundCustomerSection = document.querySelector('#foundCustomerSection');
 const customerInformationSection = document.querySelector('#customerInformationSection');
+const adjustBookingsSection = document.querySelector('#adjustBookingsSection');
+const managerBookingError = document.querySelector('#managerBookingError');
 const logInNav = document.querySelector('#logInNav');
 const dashboardNav = document.querySelector('#dashboardNav');
 const managerNav = document.querySelector('#managerNav');
@@ -170,12 +172,20 @@ export const determinePostAPIResponse = (response, date, roomNumber, customer) =
   }
 }
 
-export const determineManagerPostAPIResponse = (response, date, roomNumber) => {
+export const determineManagerPostAPIResponse = (response, date, roomNumber, customer1) => {
   if (response.ok) {
     domUpdates.addHidden([filterView, errorMessageView, dashboardView, bookingPageView, managerDashboard])
     domUpdates.removeHidden([successView])
     domUpdates.showSuccessMessage(date, roomNumber);
-    window.setTimeout(goBackToManagerDashboard, 3000);
+    Promise.all([fetchAllRooms(), fetchAllBookings(), fetchAllCustomers()])
+      .then(data => {
+        allRooms = data[0].rooms
+        allBookings = data[1].bookings
+        roomTracker = new RoomTracker(data[0].rooms, data[1].bookings);
+        manager = new Manager(data[1].bookings, data[0].rooms, data[2].customers);
+        window.setTimeout(function(){goBackToManagerDashboard(manager, customer1)}, 3000);
+      })
+      .catch(err => displayGetErrorMessage())
   } else {
     domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, managerDashboard])
     domUpdates.removeHidden([errorMessageView])
@@ -196,9 +206,9 @@ export const determineDeleteAPIResponse = (response, bookingNumber, customer1) =
         allBookings = data[1].bookings
         roomTracker = new RoomTracker(data[0].rooms, data[1].bookings);
         manager = new Manager(data[1].bookings, data[0].rooms, data[2].customers);
+        window.setTimeout(function(){goBackToManagerDashboard(manager, customer1)}, 3000);
       })
       .catch(err => displayGetErrorMessage())
-    window.setTimeout(function(){goBackToManagerDashboard(manager, customer1)}, 3000);
   } else {
     domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, managerDashboard])
     domUpdates.removeHidden([errorMessageView])
@@ -308,14 +318,36 @@ const displayFindCustomerForm = () => {
 
 const bookRoomForCustomer = () => {
   manager.findCustomer(customerNameForManagerBooking.value);
-  let customerID = manager.customer.id;
+  let foundCustomer = manager.customer;
   let selectedDate = managerSelectedDate.value.replace('-', '/').replace('-', '/');
   let selectedRoomNumber = parseInt(roomNumber.value);
-  addBookingByManager(customerID, selectedDate, selectedRoomNumber);
+  roomTracker.filterRoomsByDate(selectedDate);
+  let foundSelectedRoom = roomTracker.availableRoomsByDate.find(room => {
+    return room.number === selectedRoomNumber
+  })
+  let availableRoomNumbers = roomTracker.availableRoomsByDate.map(room => room.number).join()
+  if (roomTracker.availableRoomsByDate.length === 0) {
+    domUpdates.addHidden([adjustBookingsSection]);
+    domUpdates.removeHidden([managerBookingError]);
+    domUpdates.showManagerBookingError(`Oops! There are no rooms available for selected day!`);
+    window.setTimeout(goBackToBookingSection, 3000)
+  } else if (foundSelectedRoom === undefined) {
+    domUpdates.addHidden([adjustBookingsSection]);
+    domUpdates.removeHidden([managerBookingError]);
+    domUpdates.showManagerBookingError(`Oops! Room number ${selectedRoomNumber} is unavailable that day! Try ${availableRoomNumbers}`);
+    window.setTimeout(goBackToBookingSection, 3000)
+  } else {
+    addBookingByManager(foundCustomer, selectedDate, selectedRoomNumber);
+  }
 }
 
 const deleteRoomForCustomer = event => {
   deleteBooking(event.target.id, customer);
+}
+
+const goBackToBookingSection = () => {
+  domUpdates.addHidden([managerBookingError]);
+  domUpdates.removeHidden([adjustBookingsSection]);
 }
 
 //Event Listeners

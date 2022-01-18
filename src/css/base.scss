@@ -318,6 +318,11 @@ main {
   font-size: 8px;
 }
 
+.manager-booking-error {
+  @include flexbox(none, center, center);
+  @include font(none, 30px, #36395A);
+}
+
 input {
   @include heightAndWidth(25px, none);
 }

@@ -143,6 +143,12 @@ let domUpdates = {
       <p>Booking #${bookingNumber}</p>
     </section>
     `
+  },
+  showManagerBookingError(message) {
+    managerBookingError.innerHTML = ``;
+    managerBookingError.innerHTML = `
+    <p>${message}</p>
+    `
   }
 }
 

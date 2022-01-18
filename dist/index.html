@@ -116,7 +116,7 @@
         </div>
       </div>
       <div class="adjust-customer-bookings">
-        <div class="adjust-bookings-section">
+        <div class="adjust-bookings-section" id="adjustBookingsSection">
           <form class="adjust-bookings-form" id="adjustBookingsForm">
             <p>Book Room for Customer</p>
             <label for="customerName">Customer Name</label>
@@ -129,6 +129,9 @@
           <div class="book-or-delete-buttons">
             <button class="book-room-manager-button" id="bookRoomManagerButton">Book Room</button>
           </div>
+        </div>
+        <div class="manager-booking-error hidden" id="managerBookingError">
+          <p>Oops! There are no rooms available for selected search criteria! Try again!</p>
         </div>
       </div>
     </section>
