@@ -89,7 +89,7 @@ let domUpdates = {
       <p>Your room has been booked!</p>
     </section>
     <section class="booking-details">
-      <p>Room #${roomNumber} on ${date}</p>
+      <p>Room #${roomNumber} on ${date.slice(5, 10)}/2022</p>
     </section>
     `
   },
@@ -142,6 +142,12 @@ let domUpdates = {
     <section class="booking-details">
       <p>Booking #${bookingNumber}</p>
     </section>
+    `
+  },
+  showManagerBookingError(message) {
+    managerBookingError.innerHTML = ``;
+    managerBookingError.innerHTML = `
+    <p>${message}</p>
     `
   }
 }
