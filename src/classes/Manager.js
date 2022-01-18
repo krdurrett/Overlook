@@ -39,7 +39,7 @@ class Manager {
   }
   findCustomer(name) {
     this.customer = this.customers.find(customer => {
-      return customer.name === name
+      return customer.name.toLowerCase() === name.toLowerCase();
     })
   }
 }

@@ -64,11 +64,6 @@ const fetchAll = () => {
     .catch(err => displayGetErrorMessage())
 }
 
-// const getRandomElement = array => {
-//   var randomIndex = Math.floor(Math.random() * array.length);
-//   return array[randomIndex];
-// }
-
 const displaySpecificCustomer = (customer) => {
   customer.findMyBookings();
   customer.calculateTotalCost();
@@ -128,9 +123,16 @@ const goBackToDashboard = () => {
   domUpdates.removeHidden([dashboardView]);
 }
 
-const goBackToManagerDashboard = () => {
-  domUpdates.addHidden([errorMessageView, successView, bookingPageView, filterView, logInNav, dashboardNav]);
-  domUpdates.removeHidden([managerNav, managerDashboard]);
+const goBackToManagerDashboard = (manager, customer1) => {
+  domUpdates.addHidden([errorMessageView, successView, bookingPageView, filterView, logInNav, dashboardNav, foundCustomerSection, customerNameError]);
+  domUpdates.removeHidden([managerNav, managerDashboard, customerInformationSection]);
+  let currentDate = getReformattedDate();
+  manager.findCustomer(customer1.name);
+  let foundCustomer = manager.customer;
+  customer = new Customer(foundCustomer, allBookings, allRooms);
+  customer.findMyBookings();
+  customer.calculateTotalCost();
+  domUpdates.showCustomerInformationSection(customer, currentDate);
 }
 
 const determineButtonAction = event => {
@@ -148,15 +150,17 @@ const determineButtonAction = event => {
 const bookARoom = event => {
   let date = selectedDate.value.replace('-', '/').replace('-', '/')
   let roomNumber = parseInt(event.target.id)
-  addABooking(customer.id, date, roomNumber)
+  addABooking(customer, date, roomNumber)
 }
 
-export const determinePostAPIResponse = (response, date, roomNumber) => {
+export const determinePostAPIResponse = (response, date, roomNumber, customer) => {
   if (response.ok) {
     domUpdates.addHidden([filterView, errorMessageView, dashboardView, bookingPageView, managerNav, managerDashboard])
     domUpdates.removeHidden([successView])
     domUpdates.showSuccessMessage(date, roomNumber);
-    window.setTimeout(goBackToDashboard, 3000);
+    window.setTimeout(function() {
+      fetchSingleCustomer(customer.id);
+    }, 3000);
   } else {
     domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, managerNav, managerDashboard])
     domUpdates.removeHidden([errorMessageView])
@@ -181,12 +185,20 @@ export const determineManagerPostAPIResponse = (response, date, roomNumber) => {
   }
 }
 
-export const determineDeleteAPIResponse = (response, bookingNumber) => {
+export const determineDeleteAPIResponse = (response, bookingNumber, customer1) => {
   if (response.ok) {
     domUpdates.addHidden([filterView, errorMessageView, dashboardView, bookingPageView, managerDashboard])
     domUpdates.removeHidden([successView])
     domUpdates.showDeleteMessage(bookingNumber);
-    window.setTimeout(goBackToManagerDashboard, 3000);
+    Promise.all([fetchAllRooms(), fetchAllBookings(), fetchAllCustomers()])
+      .then(data => {
+        allRooms = data[0].rooms
+        allBookings = data[1].bookings
+        roomTracker = new RoomTracker(data[0].rooms, data[1].bookings);
+        manager = new Manager(data[1].bookings, data[0].rooms, data[2].customers);
+      })
+      .catch(err => displayGetErrorMessage())
+    window.setTimeout(function(){goBackToManagerDashboard(manager, customer1)}, 3000);
   } else {
     domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, managerDashboard])
     domUpdates.removeHidden([errorMessageView])
@@ -200,6 +212,13 @@ export const determineFetchAPIResponse = response => {
   if (response.ok) {
     domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, logInNav, managerNav])
     domUpdates.removeHidden([dashboardView, dashboardNav])
+    Promise.all([fetchAllRooms(), fetchAllBookings()])
+      .then(data => {
+        allRooms = data[0].rooms
+        allBookings = data[1].bookings
+        roomTracker = new RoomTracker(data[0].rooms, data[1].bookings);
+      })
+      .catch(err => displayGetErrorMessage())
     Promise.resolve(response)
       .then(resp => resp.json())
       .then(data => {
@@ -243,10 +262,10 @@ const getReformattedDate = () => {
 
 const logUserIn = () => {
   let userID = parseInt(userName.value.slice(8));
-  let userPassword = password.value;
-  if (userPassword === 'overlook2021' && userName.value.slice(0,8) === 'customer') {
+  let userPassword = password.value.toLowerCase();
+  if (userPassword === 'overlook2021' && userName.value.slice(0,8).toLowerCase() === 'customer') {
     fetchSingleCustomer(userID);
-  } else if (userPassword === 'overlook2021' && userName.value === 'manager') {
+  } else if (userPassword === 'overlook2021' && userName.value.toLowerCase() === 'manager') {
     domUpdates.addHidden([logInView, logInNav, filterView, successView, dashboardView, bookingPageView, tryAgainButton]);
     domUpdates.removeHidden([managerNav, managerDashboard]);
     let todaysDate = getTodaysDate();
@@ -296,9 +315,7 @@ const bookRoomForCustomer = () => {
 }
 
 const deleteRoomForCustomer = event => {
-  console.log(customer);
-  console.log(event.target.id);
-  deleteBooking(event.target.id);
+  deleteBooking(event.target.id, customer);
 }
 
 //Event Listeners

@@ -59,6 +59,10 @@ main {
   @include font(none, none, #DEDEDC);
 }
 
+.date-selector-form {
+  @include flexbox(none, none, center);
+}
+
 .dashboard-view,
 .log-in-view,
 .booking-page-view,
@@ -201,6 +205,14 @@ main {
   @include font(bold, 30px, none);
   @include heightAndWidth(40%, 60%);
   margin-bottom: 10px;
+}
+
+.manager-dashboard {
+  .heading {
+    p {
+      margin-top: 0;
+    }
+  }
 }
 
 .summary-section {

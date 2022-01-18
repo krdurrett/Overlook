@@ -38,10 +38,14 @@
       <div class="nav-title">
         <p>THE OVERLOOK</p>
       </div>
-      <form>
-        <label class="date-selector" for="selectedDate">Select a date:</label>
-        <input class="date-input" type="date" id="selectedDate" name="start-date" value="" min="2022-01-01" max="2022-12-31" required>
-        <button class="book-room-button"id="bookRoomButton">BOOK A ROOM</button>
+      <form class="date-selector-form">
+        <div>
+          <label class="date-selector" for="selectedDate">Select a date:</label>
+          <input class="date-input" type="date" id="selectedDate" name="start-date" value="" min="2022-01-01" max="2022-12-31" required>
+        </div>
+        <div>
+          <button class="book-room-button"id="bookRoomButton">BOOK A ROOM</button>
+        </div>
       </form>
     </nav>
     <section class="dashboard-view hidden" id="dashboardView">
