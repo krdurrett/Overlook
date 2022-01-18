@@ -155,7 +155,11 @@ main {
   background-color: $white-background;
 
     p {
-      @include font(bold, 30px, none);
+      @include font(bold, 20px, none);
+      margin: 0;
+    }
+
+    ul {
       margin: 0;
     }
 }
@@ -218,7 +222,7 @@ main {
 
 .summary-section {
   @include heightAndWidth(none, 40%);
-  @include font(bold, 30px, #36395A);
+  @include font(bold, 20px, #36395A);
   background-color: $white-background;
   padding: 20px;
   margin-right: 20px;
@@ -248,6 +252,10 @@ main {
 
 .adjust-bookings-form {
   @include flexbox(column, center, center);
+    p {
+      margin: 0;
+      @include font(bold, 20px, none);
+    }
 }
 
 .user-management {
@@ -296,7 +304,7 @@ main {
 }
 
 .booking-list-section-manger {
-  @include heightAndWidth(60%, 100%);
+  @include heightAndWidth(40%, 100%);
   margin-bottom: 40px;
 }
 
