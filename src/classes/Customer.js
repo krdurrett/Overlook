@@ -12,11 +12,11 @@ class Customer {
       return booking.userID === this.id
     })
     let unsortedBookings = filteredBookings.reduce((acc, booking) => {
-      acc.push({bookingDate: booking.date, roomNumber: booking.roomNumber, cost: this.rooms.find(room => room.number === booking.roomNumber).costPerNight})
+      acc.push({bookingNumber: booking.id, bookingDate: booking.date, roomNumber: booking.roomNumber, cost: this.rooms.find(room => room.number === booking.roomNumber).costPerNight})
       return acc
     }, [])
     let dateCorrectBookings = unsortedBookings.map(booking => {
-      return {bookingDate: `${booking.bookingDate.slice(5, 10)}/2022`, roomNumber: booking.roomNumber, cost: booking.cost}
+      return {bookingNumber: booking.bookingNumber, bookingDate: `${booking.bookingDate.slice(5, 10)}/2022`, roomNumber: booking.roomNumber, cost: booking.cost}
     })
     this.myBookings = dateCorrectBookings.sort((a, b) => {
       let aDate = a.bookingDate.slice(0, 5).replace('/','')

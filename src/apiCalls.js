@@ -1,11 +1,11 @@
-import { determinePostAPIResponse, determineFetchAPIResponse, determineManagerPostAPIResponse } from './scripts';
+import { determinePostAPIResponse, determineFetchAPIResponse, determineManagerPostAPIResponse, determineDeleteAPIResponse } from './scripts';
 
 export const fetchAllCustomers = () => {
   return fetch('http://localhost:3001/api/v1/customers')
     .then(response => response.json())
 }
 
-export const fetchSingleCustomer = (userID) => {
+export const fetchSingleCustomer = userID => {
   return fetch(`http://localhost:3001/api/v1/customers/${userID}`)
     .then(response => determineFetchAPIResponse(response))
 }
@@ -42,7 +42,12 @@ export const addBookingByManager = (userID, date, roomNumber) => {
     .then(response => determineManagerPostAPIResponse(response, date, roomNumber))
 }
 
-export const deleteBooking = (bookingNumber) => {
-  return fetch(`http://localhost:3001/api/v1/bookings/${bookingNumber}`)
-    .then(response => console.log(response))
+export const deleteBooking = bookingNumber => {
+  return fetch(`http://localhost:3001/api/v1/bookings/${bookingNumber}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
+    .then(response => determineDeleteAPIResponse(response, bookingNumber))
 }

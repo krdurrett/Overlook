@@ -175,7 +175,22 @@ export const determineManagerPostAPIResponse = (response, date, roomNumber) => {
   }
 }
 
-export const determineFetchAPIResponse = (response) => {
+export const determineDeleteAPIResponse = (response, bookingNumber) => {
+  if (response.ok) {
+    domUpdates.addHidden([filterView, errorMessageView, dashboardView, bookingPageView, managerDashboard])
+    domUpdates.removeHidden([successView])
+    domUpdates.showDeleteMessage(bookingNumber);
+    window.setTimeout(goBackToManagerDashboard, 3000);
+  } else {
+    domUpdates.addHidden([filterView, successView, dashboardView, bookingPageView, managerDashboard])
+    domUpdates.removeHidden([errorMessageView])
+    Promise.resolve(response)
+      .then(resp => resp.json())
+      .then(data => domUpdates.showErrorMessage(data.message))
+  }
+}
+
+export const determineFetchAPIResponse = response => {
   if (response.ok) {
     domUpdates.addHidden([errorMessageView, filterView, successView, logInView, bookingPageView, logInNav, managerNav])
     domUpdates.removeHidden([dashboardView, dashboardNav])
@@ -276,6 +291,8 @@ const bookRoomForCustomer = () => {
 
 const deleteRoomForCustomer = event => {
   console.log(customer);
+  console.log(event.target.id);
+  deleteBooking(event.target.id);
 }
 
 //Event Listeners
