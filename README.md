@@ -27,8 +27,8 @@ For this project, I built a hotel management tool for hotel customers and staff 
 
 ## Illustrations
 
- - A user starts on the home view.
- ![Landing-page-view](https://user-images.githubusercontent.com/83175748/148840029-0a231b5f-7710-46e0-8017-1b73e15d2cd2.png)
+ - The landing page is a log-in.
+ ![Landing-page-view](https://media.giphy.com/media/nmV088LcX77PuZDwBF/giphy.gif)
  - They can select "All Recipes" to see the recipes displayed.
  ![all-recipe-view](https://user-images.githubusercontent.com/83175748/148840613-c0c8dfe3-6eac-42f1-95c8-dc9b426acb92.png)
  
