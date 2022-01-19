@@ -29,9 +29,16 @@ For this project, I built a hotel management tool for hotel customers and staff 
 
  - The landing page is a log-in.
  ![Landing-page-view](https://media.giphy.com/media/nmV088LcX77PuZDwBF/giphy.gif)
- - They can select "All Recipes" to see the recipes displayed.
- ![all-recipe-view](https://user-images.githubusercontent.com/83175748/148840613-c0c8dfe3-6eac-42f1-95c8-dc9b426acb92.png)
- 
+ - If a customer logs in, they see a list of all of their bookings, and have the ability to book a room.
+ ![customer-booking](https://media.giphy.com/media/uIiQmC8atwIJgwBYnM/giphy.gif)
+ - A customer can also filter through available rooms for the date selected.
+ ![filter-rooms](https://media.giphy.com/media/B5jowbyQnajo5JWOhB/giphy.gif)
+ - If a manager logs in, they see a summary of todays room booking status, and have the ability to search for a customer by name, which will show all of that customers bookings.
+ ![manager-login](https://media.giphy.com/media/ncEnuouNrZc1EhllHN/giphy.gif)
+ - A manager can delete a booking for the selected customer.
+ ![manager-delete](https://media.giphy.com/media/vOQOFmZLeBZrJ7KD4C/giphy.gif)
+ - A manager can book a room for a customer.
+ ![manager-book]()
  
 ## Install + Setup
   - Fork and clone the repo down to your local machine
