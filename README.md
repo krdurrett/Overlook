@@ -44,7 +44,7 @@ For this project, I built a hotel management tool for hotel customers and staff 
  ![manager-delete](https://media.giphy.com/media/vOQOFmZLeBZrJ7KD4C/giphy.gif)
  - A manager can book a room for a customer.
  
- ![manager-book]()
+ ![manager-book](https://media.giphy.com/media/W2XoCIINTP1VhhRQKn/giphy.gif)
  
 ## Install + Setup
   - Fork and clone the repo down to your local machine
